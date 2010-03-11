@@ -11,7 +11,7 @@
  **/
 class User extends AppModel
 {
-	public $hasMany = array('Core.LoginToken');
+	public $hasMany = array('Flour.LoginToken');
 	
 	var $validate = array(
 		'name' => array(
