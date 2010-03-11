@@ -1,0 +1,77 @@
+/* EDITOR RELATED STYLES - CUSTOMIZE FOR YOUR NEEDS */
+/*
+    The classes panel, the visual feedback and the preview
+    will be affected by these values.
+    
+    - Commented styles inside style definitions are used for visual 
+      feedback when using the editor.
+    - Comments before opening the style are used as caption.
+    - Comments after the class name and before the style declaration ({)
+      define the jQuery expression that decides whether this 
+      style should be applied or not.
+      
+    Note: the WYMeditor and /WYMeditor comments below are required
+    for the CSS parser to work properly.
+*/
+
+/* WYMeditor */
+
+/* PARA: Info */
+p.info /* p[class!=important][class!=infobox][class!=warning][class!=warningbox] */ {
+	padding-left: 23px !important; background: transparent url('../cms/img/admin/ico/information.png') 2px 2px no-repeat;
+  /* padding-left: 25px; background: #fafafa url('../cms/img/admin/ico/information.png') 4px 4px no-repeat; */
+}
+
+/* PARA: Infobox */
+p.infobox /* p[class!=important][class!=info][class!=warning][class!=warningbox] */ {
+	padding: 8px 32px !important; margin: 10px; border: 2px solid #3498CD; background: #D7EEF4 url('../cms/img/admin/ico/information.png') 10px 10px no-repeat; -webkit-box-shadow: rgb(136, 136, 136) 0px 2px 2px;
+  /* padding-left: 25px; border: 1px solid #3498CD; background: #D7EEF4 url('../cms/img/admin/ico/information.png') 4px 4px no-repeat; */
+}
+
+/* PARA: Warning */
+p.warning /* p[class!=important][class!=info][class!=infobox][class!=warningbox] */ {
+	padding-left: 23px !important; background: transparent url('../cms/img/admin/ico/error.png') 2px 2px no-repeat;
+  /* padding-left: 25px; background: #fafafa url('../cms/img/admin/ico/error.png') 4px 4px no-repeat; */
+}
+
+/* PARA: Warningbox */
+p.warningbox /* p[class!=important][class!=info][class!=infobox][class!=warning] */ {
+	padding: 8px 32px !important; margin: 10px; border: 2px solid #FFA229; background: #FBFBDA url('../cms/img/admin/ico/error.png') 10px 10px no-repeat;
+  /* padding-left: 25px; border: 1px solid #FFA229; background: #FBFBDA url('../cms/img/admin/ico/error.png') 4px 4px no-repeat; */
+}
+
+
+
+/* PARA: Date */
+p.date {
+  color: #ccf;
+  /* background-color: #ff9; border: 2px solid #ee9; */
+}
+
+/* PARA: Hidden note */
+p.hidden-note /* p[class!="important"] */ {
+     display: none;
+    /* color: #999; border: 2px solid #ccc; */
+}
+
+/* PARA: Important */
+p.important /* p[class!="hidden-note"] */ {
+    color: red; font-weight: bold;
+    /* color: red; font-weight: bold; border: 2px solid red; */
+}
+
+img.border {
+    border: 1px solid #ccc;
+    /* border: 4px solid #ccc; */
+}
+
+/* LIST: Special */
+ul.special,
+ol.special {
+    color: green;
+    /** / background-color: #fc9; border: 2px solid red; /**/
+}
+
+
+/* /WYMeditor */
+/* END EDITOR RELATED STYLES */

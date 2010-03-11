@@ -13,6 +13,7 @@ class LayoutComponent extends Object
 
 	function setup()
 	{
+		$this->__controller->view = 'Flour.Theme';
 		$this->__controller->theme = Configure::read('App.theme');
 		if (!empty($this->__controller->params['prefix']) && in_array($this->__controller->params['prefix'], Configure::read('Routing.prefixes')))
 		{

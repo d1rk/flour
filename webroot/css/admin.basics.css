@@ -1,0 +1,291 @@
+
+h1, h1 a {
+	color: #383838 !important;
+	margin-bottom: 4px;
+	text-decoration: none;
+	}
+
+h3, h4 {
+	margin-bottom: 4px;
+	}
+
+code {
+	background-color: #f0f0f0;
+	padding: 3px 6px;
+	}
+
+abbr {
+	cursor: help;
+	}
+
+.mark { background-color: #FFE871; padding: 3px 6px; }
+.color1 { color: #0083D4; }
+.color2 { color: #2E8D1A; }
+
+div.btnbar { float: right; }
+
+ul.horiz li {
+	float: left;
+	display: inline;
+	list-style-type: none;
+	margin: 0 5px;
+	padding-right: 0px;
+	padding-left: 0px;
+	vertical-align: baseline;
+	}
+ul.horiz li a { display: block; padding: 0 3px 0 0;}
+ul.horiz.small li a { display: block; padding: 0 3px 0 0;}
+
+.c, .clear { clear: both; }
+.cl, .clearleft { clear: left; }
+.cr, .clearright { clear: right; }
+
+.half { width: 47%; }
+.full { width: 98%; }
+
+.fleft { float: left; }
+.fright { float: right; }
+
+.cake-sql-log {
+	width:100%;
+	background-color:#000;
+	color:#FFF;
+	border-collapse:collapse;
+}
+
+.cake-sql-log caption {
+	background-color:#900;
+	color:#FFF;
+}
+
+.cake-sql-log td {
+	padding:3px;
+	border:1px solid #999;
+	background-color:#EEE;
+	color:#000;
+}
+
+
+
+table {
+	border-collapse:collapse;
+	}
+
+
+
+
+
+/* Flash Messages */
+
+div#flashMessage {
+	padding: 1em;
+	}
+
+/* Navigations */
+
+ul.navbar {
+	padding: 0;
+	margin-left: 0;
+	clear: both
+	list-style-type: none;
+	}
+
+	ul.navbar li {
+		display: inline;
+		list-style-type: none;
+		margin-right: 10px;
+		}
+
+ul.btns, ul.btnbar {
+	padding: 0;
+	margin-left: 0;
+	clear: both
+	list-style-type: none;
+	}
+
+ul.btns.small, ul.btnbar.small {
+	font-size: 90%;
+	margin-bottom: 5px;
+	}
+
+	ul.btns li, ul.btnbar li {
+		list-style-type: none;
+		}
+
+	ul.btnbar li {
+		display: inline;
+		list-style-type: none;
+		}
+
+	ul.btnbar li a img, ul.btns li a img {
+		position: relative;
+		top: 3px
+		}
+
+	ul.btnbar li a, ul.btns li a {
+		color: #000;
+		text-decoration: none;
+		font-weight: bold;
+		display: block;
+		padding-left: 4px;
+		border-top: 1px solid #ddd;
+		border-left: 1px solid #c3c3c3;
+		border-right: 1px solid #c3c3c3;
+		border-bottom: 1px solid #7c7c7c;
+		background: #ededed url(../img/input_bg.gif) left;
+		margin-bottom: 4px;
+		}
+
+	ul.btnbar.xsmall li a, ul.btns.xsmall li a {
+	    font-weight: normal;
+	    line-height: 20px;
+	    }
+	ul.btnbar li a:hover, ul.btns li a:hover {
+		position: relative;
+		top: 1px;
+		border-top: 1px solid #7c7c7c;
+		border-left: 1px solid #c3c3c3;
+		border-right: 1px solid #c3c3c3;
+		border-bottom: 1px solid #ddd;
+		background: #ccc url(../img/input_bg.gif) left;
+		}
+
+/* Headers */
+
+h2 a,
+h3 a,
+h4 a,
+h5 a { text-decoration: none; color: inherit; }
+
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover { text-decoration: underline; }
+
+
+
+
+/* Boxes */
+
+.stripes { background-image: url('../img/admin/stripes.gif'); }
+
+div#modal div.box { margin: 0; padding: 0; background: transparent; } /* boxes inside modal dont need no space */
+
+div.box.green {
+	background-color: #ECF9E5;
+	}
+
+div.box.purple {
+	background-color: #ECE5F9;
+	}
+
+div.box.darkpurple {
+	background-color: #E5CEF9;
+	}
+
+div.box.red {
+	background-color: #F9ECE5;
+	}
+
+div.box.teal {
+	background-color: #A5BCB9;
+	}
+
+div.box.yellow {
+	background-color: #ECEF95;
+	}
+
+div.box.darkyellow {
+	background-color: #ECEF95;
+	}
+
+div.box.title {
+	border-bottom: 2px solid #ccc;
+	padding: 0;
+	}
+
+div.box.title h1, div.box.title h2, div.box.title h3, div.box.title h4 {
+	padding: 0;
+	margin: 0 0 0 10px;
+	}
+
+/* Link Flags */
+
+ul.flags a, a.flag {
+	color: #eee;
+	padding: 3px;
+	white-space:nowrap;
+	background-color: #666;
+	text-decoration: none;
+	}
+
+a.flag.active {
+	font-weight: bold;
+	}
+
+	a.flag.red {
+		background-color: #900;
+		}
+
+	a.flag.green {
+		background-color: #090;
+		}
+
+	a.flag.blue {
+		background-color: #009;
+		}
+
+/* Projects Plugin */
+
+.project {
+	}
+
+.msg {
+	padding-left: 10px;
+	border-width: 0 0 0 4px;
+	border-style: solid;
+	}
+
+	.msgform {
+		border-width: 0 0 0 4px;
+		border-style: solid;
+		}
+
+/* Modal Dialog */
+
+#flashMessage,
+.flasher {
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 220px;
+	text-align: center;
+	padding: 20px 0;
+	background: #fff;
+	border: 4px solid #ccc;
+	border-right: 0;
+	border-left: 0;
+	font-size: 150%;
+	z-index: 3;
+	}
+
+	#flashMessage small,
+	.flasher small {
+		font-size: 70%;
+		}
+
+	#flashMessage p,
+	.flasher p {
+		margin: 0;
+		padding: 0;
+		}
+
+	.success {
+		background: #BDE1B6;
+		border-color: #82BD6C;
+		}
+
+	.error {
+		background: #E1BDB6;
+		border-color: #BD826C;
+		}
