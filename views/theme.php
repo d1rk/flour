@@ -61,13 +61,16 @@ class ThemeView extends View {
 				if (strpos($paths[$i], DS . 'plugins' . DS) === false
 					&& strpos($paths[$i], DS . 'libs' . DS . 'view') === false) {
 						if ($plugin) {
-							$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS . 'plugins' . DS . $plugin . DS;
+							//$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS . 'plugins' . DS . $plugin . DS;
+							$themePaths[] = ROOT.DS.'themes'. DS . $this->theme . DS . 'plugins' . DS . $plugin . DS;
 						}
 						//$themePaths[] = $paths[$i] . 'themed'. DS . $this->theme . DS;
-						$themePaths[] = ROOT.DS . 'themes'. DS . $this->theme . DS;
+						$themePaths[] = ROOT.DS.'themes'. DS . $this->theme . DS;
 					}
 			}
-			$paths = array_merge($paths, $themePaths);
+			$lastone = array_pop($paths); //move last path (hopefully the cake-core) ...
+			$paths = array_merge($paths, $themePaths); // (merge theme-path in)
+			$paths[] = $lastone; //... to the last place in array
 		}
 		return $paths;
 	}
