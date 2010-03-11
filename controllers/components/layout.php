@@ -9,6 +9,7 @@ class LayoutComponent extends Object
 	public function initialize(&$controller, $settings = array())
 	{
 		$this->__controller = $controller;
+		$this->setup();
 	}
 
 	function setup()
