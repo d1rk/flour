@@ -42,6 +42,35 @@ class ThemeView extends View {
 		$this->theme =& $controller->theme;
 	}
 
+
+/**
+ * Renders a piece of PHP with provided parameters and returns HTML, XML, or any other string.
+ *
+ * This realizes the concept of Elements, (or "partial layouts")
+ * and the $params array is used to send data to be used in the
+ * Element.  Elements can be cached through use of the cache key.
+ *
+ * This method has been overwritten to extend the plugin, to look for, it no plugin is given
+ * 
+ * ### Special params
+ *
+ * - `cache` - enable caching for this element accepts boolean or strtotime compatible string.
+ *   Can also be an array. If `cache` is an array,
+ *   `time` is used to specify duration of cache.
+ *   `key` can be used to create unique cache files.
+ * - `plugin` - Load an element from a specific plugin.
+ *
+ * @param string $name Name of template file in the/app/views/elements/ folder
+ * @param array $params Array of data to be made available to the for rendered
+ *    view (i.e. the Element)
+ * @return string Rendered Element
+ * @access public
+ */
+	function element($name, $params = array(), $loadHelpers = false) {
+		if(!isset($params['plugin'])) $params['plugin'] = 'flour'; //set plugin to flour, if nothing was given
+		return parent::element($name, $params, $loadHelpers);
+	}
+
 /**
  * Return all possible paths to find view files in order
  *
