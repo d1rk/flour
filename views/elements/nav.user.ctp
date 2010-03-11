@@ -1,6 +1,6 @@
 <?php
 $nav = array();
-$user = Authsome::get();
+if(Configure::read('Env.installed')) $user = Authsome::get();
 
 if(!empty($user))
 {
@@ -24,6 +24,7 @@ if(!empty($user))
 	$active = (Router::url($link) == $this->here) ? 'active' : '';
 	$nav[] = $this->Html->link( __('register', true), $link, array('class' => $active));
 }
+
 
 echo $this->Html->nestedList($nav);
 ?>
