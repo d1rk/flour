@@ -571,6 +571,13 @@ div.actions ul li a:hover {
 	text-decoration: underline;
 }
 
+div.btnbar {
+	float: right;
+	}
+
+	div.btnbar ul { list-style: none; }
+	div.btnbar ul li { display: inline; margin-right: 6px; }
+
 /* Related */
 div.related {
 	clear: both;
