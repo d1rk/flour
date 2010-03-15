@@ -193,14 +193,24 @@ ul, li {
 	background: #fff;
 	clear: both;
 	color: #333;
-	overflow: auto;
 }
 
-
 #footer {
+	color: #888;
+	font-size: 12px;
 	clear: both;
 	padding: 6px 10px;
 	text-align: right;
+}
+
+#copyright {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	clear: both;
+	padding: 6px 10px;
+	text-align: right;
+	background: #fff;
 }
 
 /* Tables */

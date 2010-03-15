@@ -1,7 +1,7 @@
 <?php
-$template = (isset($template)) 
-	? $template 
-	: $this->element($element); //TODO: check on element
+$element = (isset($element)) 
+	? $element 
+	: 'generic'; //TODO: check on genric element
 
 $header = (isset($header)) 
 	? $header 
@@ -122,11 +122,12 @@ echo $html->div('panel', null, array('style' => 'border-bottom: 1px solid #E6E6E
 			
 			foreach($data as $ind => $row)
 			{
-				$rows[] = $this->element($item, array('row' => $row, 'i' => $i));
+				$rows[] = $this->element($element, array('row' => $row, 'i' => $i));
 			}
 
 			//insertion of item-template in main-template
-			$content = str_replace('{{rows}}', implode("\n", $rows), $main_template);
+			$connector = (Configure::read()) ? "\n" : '';
+			$content = $header.str_replace('{{rows}}', implode($connector, $rows), $main_template).$footer;
 	
 		} else {
 			$content = $empty;
