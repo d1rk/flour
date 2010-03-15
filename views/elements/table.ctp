@@ -1,13 +1,13 @@
 <?php
-$element = (isset($element)) 
+$element = (isset($element))
 	? $element 
 	: 'generic'; //TODO: check on generic element
 
-$header = (isset($header)) 
+$header = (isset($header))
 	? $header 
 	: '';
 
-$footer = (isset($footer)) 
+$footer = (isset($footer))
 	? $footer 
 	: '';
 
@@ -39,6 +39,10 @@ $label = (isset($label))
 	? $label
 	: null;
 
+$caption = (isset($caption))
+	? $caption
+	: null;
+
 $template = (isset($template))
 	? $template
 	: '{{rows}}';
@@ -54,12 +58,17 @@ $template = (isset($template))
 //searchform + daterange
 echo $form->create('', array('action' => 'search'));
 
-echo $html->div('panel', null, array('style' => 'border-bottom: 1px solid #E6E6E6;'));
+echo $html->div('panel');
+
+	if(!empty($caption))
+	{
+		echo $this->Html->div('caption', $caption);
+	}
 
 	//input for search
 	if(!empty($search))
 	{
-		echo $html->div('btnbar', null, array('style' => 'padding: 4px;'));
+		echo $html->div('btnbar', null, array('style' => 'padding: 4px; margin-right: 6px;'));
 
 			if(!empty($current_searchterms))
 			{
@@ -75,7 +84,7 @@ echo $html->div('panel', null, array('style' => 'border-bottom: 1px solid #E6E6E
 		echo $html->tag('/div')."\n";
 	}
 
-	//input for search
+	//input for date
 	if(!empty($date))
 	{
 		$date_options = array(
