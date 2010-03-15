@@ -37,7 +37,6 @@ class ButtonHelper extends AppHelper
  */
 	function link($name, $link = array(), $options = array())
 	{
-		$output = array();
 		$defaults = array(
 			'class' => array('ui-button', 'ui-state-default', 'ui-corner-all'),
 		);
@@ -52,15 +51,51 @@ class ButtonHelper extends AppHelper
 			$options['class'] = array($options['class']);
 		}
 
-		$img = (isset($options['ico']))
-			? $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])))
-			: null;
+		if(isset($options['ico']))
+		{
+			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])));
+			unset($options['ico']);
+		} else {
+			$img = null;
+		}
 
 		$options['class'] = implode(' ', array_merge($defaults['class'], $options['class']));
 		
 		$options['escape'] = false;
 		
 		$output = $this->Html->link($this->Html->tag('span', $img).$this->Html->tag('span', $name, array('class' => 'ui-button-text')), $link, $options);
+		return $this->output($output);
+	}
+
+	function button($name, $options = array())
+	{
+		$defaults = array(
+			'class' => array('ui-button', 'ui-state-default', 'ui-corner-all'),
+		);
+
+		if(!isset($options['class']))
+		{
+			$options['class'] = '';
+		}
+
+		if(!is_array($options['class']))
+		{
+			$options['class'] = array($options['class']);
+		}
+
+		if(isset($options['ico']))
+		{
+			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])));
+			unset($options['ico']);
+		} else {
+			$img = null;
+		}
+
+		$options['class'] = implode(' ', array_merge($defaults['class'], $options['class']));
+		
+		$options['escape'] = false;
+		
+		$output = $this->Html->tag('button', $this->Html->tag('span', $img).$this->Html->tag('span', $name, array('class' => 'ui-button-text')), $options);
 		return $this->output($output);
 	}
 

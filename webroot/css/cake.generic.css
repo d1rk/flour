@@ -24,7 +24,15 @@ a img {
 	border:none;
 	vertical-align: middle;
 }
-
+button {
+	font-size: 100%;
+	cursor: hand;
+	padding: 2px 4px;
+}
+button span {
+	display: inline-block;
+	padding: 2px 4px;
+}
 td.actions a.ui-button {
 	font-size: 82%;
 	padding: 2px 4px;
