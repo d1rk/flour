@@ -160,12 +160,11 @@ ul, li {
 
 /* SUBNAV */
 .navSub{
-	background: #efefef;
-	float: right;
 	color: #efefef;
-	padding: 3px 10px;
+	background: #efefef;
+	padding: 5px 10px;
 	overflow: hidden;
-	text-align: center;
+	text-align: right;
 }
 .navSub ul { 
 	list-style: none; 
@@ -177,10 +176,10 @@ ul, li {
 .navSub ul li span
 {
 	color: #666;
-	padding: 3px 10px;
-	display: block;
-	float: left;
-	text-decoration: none; 
+	background: #ddd;
+	padding: 2px 10px;
+	display: inline-block;
+	text-decoration: none;
 }
 .navSub ul li a:hover {
 	color: #333;
@@ -194,7 +193,6 @@ ul, li {
 	background: #fff;
 	clear: both;
 	color: #333;
-	padding: 10px 20px 40px 20px;
 	overflow: auto;
 }
 
@@ -239,6 +237,10 @@ table tr td.actions {
 }
 table tr td.actions a {
 	margin: 0px 4px;
+	text-decoration: none;
+}
+table tr td.actions a img {
+	margin: 0px 2px;
 }
 .cake-sql-log table {
 	background: #f4f4f4;
@@ -678,3 +680,44 @@ div.code-coverage-results span.result-ok {
 div.code-coverage-results span.result-good {
 	color: #0a0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+div.empty { background-color: #F2F2F2; height: 600px; text-align: center; }
+div.empty div.inner { padding-top: 180px; }
+div.empty div.inner div.panel { border-left: 0; border-right: 0; }
+div.empty div.inner div.panel h4 { padding-bottom: 5px; text-decoration: underline; }
+
+span.filter ul { list-style: none; margin-top: 4px; }
+span.filter ul li a { display: block; float: left; margin-right: 10px; }
+
+ul.horiz li { margin: 0; }
+ul.horiz li a { padding: 4px; }
+
+div.input.orders label { letter-spacing: 1px; margin-top: 2px; }
+div.input div.items small { visibility: visible; }
+
+td.actions.hideme ul { visibility: hidden; }
+tr.hover td.actions ul { visibility: visible; }
+
+div.daterange { padding: 4px 0 0 4px; }
+.ui-widget-header { background: transparent; border: 0; }
+
+span.flag { padding: 2px; font-size: 9px; font-family: Verdana; font-weight: bold; display: block; text-align: center; line-height: 14px; }
+span.flag.canceled { background: #900; color: #fff; }
