@@ -1,7 +1,7 @@
 <?php
 $element = (isset($element)) 
 	? $element 
-	: 'generic'; //TODO: check on genric element
+	: 'generic'; //TODO: check on generic element
 
 $header = (isset($header)) 
 	? $header 
@@ -39,8 +39,8 @@ $label = (isset($label))
 	? $label
 	: null;
 
-$main_template = (isset($main_template))
-	? $main_template
+$template = (isset($template))
+	? $template
 	: '{{rows}}';
 
 
@@ -127,7 +127,7 @@ echo $html->div('panel', null, array('style' => 'border-bottom: 1px solid #E6E6E
 
 			//insertion of item-template in main-template
 			$connector = (Configure::read()) ? "\n" : '';
-			$content = $header.str_replace('{{rows}}', implode($connector, $rows), $main_template).$footer;
+			$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
 	
 		} else {
 			$content = $empty;
