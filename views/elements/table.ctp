@@ -122,7 +122,7 @@ echo $html->div('panel', null, array('style' => 'border-bottom: 1px solid #E6E6E
 			
 			foreach($data as $ind => $row)
 			{
-				$rows[] = $this->element($element, array('row' => $row, 'i' => $i));
+				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++));
 			}
 
 			//insertion of item-template in main-template

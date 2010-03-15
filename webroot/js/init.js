@@ -16,6 +16,15 @@ $().ready(function(){
 	$("input, textarea").focus(function(){$(this).addClass("active");});$("input, textarea").blur(function(){$(this).removeClass("active");});
 	$("div.input input, div.input select, div.input textarea").focus(function(){$(this).parent().addClass("active");});$("div.input input, div.input select, div.input textarea").blur(function(){$(this).parent().removeClass("active");});
 
+	$('.ui-state-default')
+	.hover(
+		function(){ $(this).addClass("ui-state-hover"); },
+		function(){ $(this).removeClass("ui-state-hover"); })
+	.mousedown(function(){	$(this).addClass("ui-state-active"); })
+	.mouseup(function(){ $(this).removeClass("ui-state-active"); });
+
+
+
 	//does AUTO-Enter on elements that have .btnEnter
 	//$("form input").keypress(function (e) { if ((e.which && e.which == 13) || (e.keyCode && e.keyCode == 13)) { $('.btnEnter').click(); return false; } else { return true; } });
 	//$("img[src$=.png]").ifixpng();
