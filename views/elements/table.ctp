@@ -131,7 +131,7 @@ echo $html->div('panel');
 			
 			foreach($data as $ind => $row)
 			{
-				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++));
+				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
 			}
 
 			//insertion of item-template in main-template
