@@ -6,25 +6,24 @@ if(!empty($user))
 {
 	$nav[] = $this->Html->tag('span', String::insert( __('hello :name', true), $user['User']));
 
-	$link = array('controller' => 'users', 'action' => 'settings');
+	$link = array('controller' => 'users', 'action' => 'settings', 'admin' => false);
 	$active = (Router::url($link) == $this->here) ? 'active' : '';
 	$nav[] = $this->Html->link( __('settings', true), $link, array('class' => $active));
 
-	$link = array('controller' => 'users', 'action' => 'logout');
+	$link = array('controller' => 'users', 'action' => 'logout', 'admin' => false);
 	$active = (Router::url($link) == $this->here) ? 'active' : '';
 	$nav[] = $this->Html->link( __('logout', true), $link, array('class' => $active));
 
 } else {
 
-	$link = array('controller' => 'users', 'action' => 'login');
+	$link = array('controller' => 'users', 'action' => 'login', 'admin' => false);
 	$active = (Router::url($link) == $this->here) ? 'active' : '';
 	$nav[] = $this->Html->link( __('login', true), $link, array('class' => $active));
 
-	$link = array('controller' => 'users', 'action' => 'register');
+	$link = array('controller' => 'users', 'action' => 'register', 'admin' => false);
 	$active = (Router::url($link) == $this->here) ? 'active' : '';
 	$nav[] = $this->Html->link( __('register', true), $link, array('class' => $active));
 }
-
 
 echo $this->Html->nestedList($nav);
 ?>
