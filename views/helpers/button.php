@@ -53,7 +53,7 @@ class ButtonHelper extends AppHelper
 
 		if(isset($options['ico']))
 		{
-			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])));
+			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])), array('width' => '16', 'height' => '16'));
 			unset($options['ico']);
 		} else {
 			$img = null;
@@ -85,7 +85,7 @@ class ButtonHelper extends AppHelper
 
 		if(isset($options['ico']))
 		{
-			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])));
+			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])), array('width' => '16', 'height' => '16'));
 			unset($options['ico']);
 		} else {
 			$img = null;
