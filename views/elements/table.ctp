@@ -131,6 +131,7 @@ echo $html->div('panel');
 			
 			foreach($data as $ind => $row)
 			{
+				$row = (isset($prefix)) ? array($prefix => $row) : $row;
 				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
 			}
 
