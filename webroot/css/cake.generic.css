@@ -24,11 +24,6 @@ a img {
 	border:none;
 	vertical-align: middle;
 }
-button {
-	font-size: 14px;
-	cursor: hand;
-	padding: 2px 4px;
-}
 button span {
 	display: inline-block;
 	padding: 2px 4px;
@@ -36,13 +31,18 @@ button span {
 a.ui-button {
 	display: inline-block;
 	padding: 2px;
+	vertical-align: baseline;
+	text-decoration: none;
 	text-shadow: 1px 1px #fff;
 	-moz-box-shadow: rgba(136, 136, 136, 0.2) 0px 1px 1px;
 	-webkit-box-shadow: rgba(136, 136, 136, 0.2) 0px 1px 1px;
 }
 button.ui-button {
+	font-size: 14px;
+	cursor: hand;
 	padding: 2px 4px;
 	text-shadow: 1px 1px #fff;
+	vertical-align: baseline;
 	-moz-box-shadow: rgba(136, 136, 136, 0.2) 0px 1px 1px;
 	-webkit-box-shadow: rgba(136, 136, 136, 0.2) 0px 1px 1px;
 }
@@ -50,6 +50,10 @@ a.ui-button span {
 	padding: 2px;
 	display: inline-block;
 	text-decoration: none;
+}
+button.ui-button span img,
+a.ui-button span img {
+	vertical-align: middle;
 }
 h1, h2, h3, h4 {
 	font-weight: normal;
