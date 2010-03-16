@@ -70,9 +70,9 @@ class GridHelper extends AppHelper
 			$class = "span-$span last";
 			$content = null;
 		} else {
-			$class = "span-$span"
+			$class = "span-$span";
 		}
-		$output[] = $this->Html->div('span-'.$span, $content, $options);
+		$output[] = $this->Html->div($class, $content, $options);
 		return $this->output($output);
 	}
 
