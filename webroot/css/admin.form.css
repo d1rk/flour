@@ -42,6 +42,11 @@ div.panel {
 			visibility: hidden;
 			margin: 6px;
 			}
+			
+			div.actions ul li, 
+			div.actions a {
+				margin: 0 4px;
+			}
 
 		div.items div.item div.actions a.ui-button {
 			margin-top: 5px;

@@ -68,9 +68,6 @@ h4 {
 	font-weight: normal;
 	padding-top: 0.5em;
 }
-ul, li {
-	margin: 0 12px;
-}
 
 /* Layout */
 #container {
@@ -99,7 +96,7 @@ ul, li {
 #navMain{
 	background: #353535;
 	clear: both;
-	color: #efefef;
+	color: #F2F2F2;
 	padding: 10px 20px 0px 20px;
 	overflow: hidden;
 }
@@ -110,7 +107,7 @@ ul, li {
 	display: inline; 
 }
 #navMain ul li a {
-	color: #efefef;
+	color: #F2F2F2;
 	padding: 6px 10px 4px 10px;
 	display: block;
 	float: left;
@@ -118,7 +115,7 @@ ul, li {
 }
 #navMain ul li a:hover {
 	color: #333;
-	background: #efefef;
+	background: #F2F2F2;
 }
 #navMain ul li a.active {
 	color: #222;
@@ -128,7 +125,7 @@ ul, li {
 /* USERNAV */
 #navUser{
 	float: right;
-	color: #efefef;
+	color: #F2F2F2;
 	padding: 0px;
 	margin: 0 40px;
 	overflow: hidden;
@@ -157,13 +154,15 @@ ul, li {
 
 /* SUBNAV */
 .navSub{
-	color: #efefef;
-	background: #efefef;
-	padding: 5px 10px;
+	color: #F2F2F2;
+	background: #F2F2F2;
+	padding: 10px;
 	overflow: hidden;
 	text-align: right;
 }
-.navSub ul { 
+.navSub ul {
+	padding: 0;
+	margin: 0;
 	list-style: none; 
 }
 .navSub ul li { 
