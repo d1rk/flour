@@ -67,6 +67,18 @@ class GridHelper extends AppHelper
 		return $this->output($output);
 	}
 
+/**
+ * returns a /div
+ *
+ * @access public
+ */
+	function end()
+	{
+		$output = array();
+		$output[] = $this->Html->tag('/div'); //TODO: Calculate correct span and output number
+		return $this->output($output);
+	}
+
 	function output($lines = '')
 	{
 		if(!is_array($lines))
