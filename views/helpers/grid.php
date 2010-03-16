@@ -58,11 +58,20 @@ class GridHelper extends AppHelper
  * returns a div with set span
  *
  * @param int $span width of span
+ * @param mixed $content bool for 'last' or string for content of div
+ * @param array $options Options to be given into div
  * @access public
  */
 	function span($span = 24, $content = null, $options = array())
 	{
 		$output = array();
+		if(is_bool($content))
+		{
+			$class = "span-$span last";
+			$content = null;
+		} else {
+			$class = "span-$span"
+		}
 		$output[] = $this->Html->div('span-'.$span, $content, $options);
 		return $this->output($output);
 	}
