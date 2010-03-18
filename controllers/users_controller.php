@@ -57,7 +57,7 @@ class UsersController extends AppController {
 	{
 		if (!$id)
 		{
-			$this->Session->setFlash(__('Invalid User.', true));
+			$this->Session->setFlash( __('Invalid User.', true));
 			$this->redirect(array('action'=>'index'));
 		}
 		$this->set('data', $this->User->read(null, $id));
@@ -119,7 +119,7 @@ class UsersController extends AppController {
 		}
 
 		$this->Session->setFlash( __('Logged in successfully.', true));
-		$this->redirect(array('admin' => true, 'controller' => 'clients', 'action' => 'index'));
+		$this->redirect('/');
 	}
 }
 ?>
