@@ -52,8 +52,8 @@ $template = (isset($template))
 
 
 //needed for daterange picker
-//echo $javascript->link(array('global/jquery/daterange'));
-//echo $html->css(array('global/jquery/daterange'));
+//echo $this->Html->script(array('global/jquery/daterange'));
+//echo $this->Html->css(array('global/jquery/daterange'));
 
 //searchform + daterange
 echo $form->create('', array('action' => 'search'));
