@@ -97,7 +97,7 @@ class ThemeView extends View {
 			}
 			$paths[] = App::pluginPath($plugin) . 'views' . DS;
 		}
-		$paths = array_merge($viewPaths, $paths);
+		$paths = array_merge($paths, $viewPaths);
 
 		$themePaths = array();
 
