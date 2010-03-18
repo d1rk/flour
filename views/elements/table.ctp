@@ -56,9 +56,9 @@ $template = (isset($template))
 //echo $this->Html->css(array('global/jquery/daterange'));
 
 //searchform + daterange
-echo $form->create('', array('action' => 'search'));
+echo $this->Form->create('', array('action' => 'search'));
 
-echo $html->div('panel');
+echo $this->Html->div('panel');
 
 	if(!empty($caption))
 	{
@@ -68,20 +68,21 @@ echo $html->div('panel');
 	//input for search
 	if(!empty($search))
 	{
-		echo $html->div('btnbar', null, array('style' => 'padding: 4px; margin-right: 6px;'));
+		echo $this->Html->div('btnbar', null, array('style' => 'padding: 4px; margin-right: 6px;'));
 
 			if(!empty($current_searchterms))
 			{
-				echo $this->Html->tag('span', $html->link( __('reset', true), array('action' => $this->action)));
+				echo $this->Html->tag('span', $this->Html->link( __('reset', true), array('action' => $this->action)));
 			}
-			echo $form->input('search', array(
+			echo $this->Form->hidden('Model.name', array('value' => $search));
+			echo $this->Form->input('search', array(
 				'label' => false,
 				'value' => $current_searchterms,
 				'class' => 'search',
 				'div' => false,
 				'title' => __('Search', true),
 			));
-		echo $html->tag('/div')."\n";
+		echo $this->Html->tag('/div')."\n";
 	}
 
 	//input for date
@@ -94,10 +95,10 @@ echo $html->div('panel');
 			'autocomplete' => 'off'
 		);
 		if(!empty($this->params['named']['date'])) $date_options['value'] = $this->params['named']['date'];
-		echo $html->div('daterange', $form->input($model.'.date', $date_options));
+		echo $this->Html->div('daterange', $this->Form->input($model.'.date', $date_options));
 	}
-	//input for date
 
+	//filters
 	if(!empty($filters))
 	{
 		//prepare filters
@@ -107,20 +108,21 @@ echo $html->div('panel');
 
 		foreach($filters as $name => $link)
 		{
-			$filter[] = $html->link( $name, array_merge($merge, $link), array('class' => (empty($this->params['named'])) ? 'active' : null));
+			$filter[] = $this->Html->link( $name, array_merge($merge, $link), array('class' => (empty($this->params['named'])) ? 'active' : null));
 		}
 	}
 
-	echo $html->div('input'); //TODO: add model-class
+	//rendr input
+	echo $this->Html->div('input'); //TODO: add model-class
 
 		if(!empty($label))
 		{
-			echo $html->tag('label', $label);
+			echo $this->Html->tag('label', $label);
 		}
 
 		if(!empty($filter))
 		{
-			echo $html->tag('span', $html->nestedList($filter), array('class' => 'filter'));
+			echo $this->Html->tag('span', $this->Html->nestedList($filter), array('class' => 'filter'));
 		}
 
 		//rows
@@ -145,22 +147,22 @@ echo $html->div('panel');
 
 		if(!empty($current_searchterms))
 		{
-			$content = $text->highlight($content, $current_searchterms, '<span class="highlight">\1</span>', true);
+		//	$content = $this->Text->highlight($content, $current_searchterms, '<span class="highlight">\1</span>', true);
 		}
 
-		echo $html->div('items', $content);
+		echo $this->Html->div('items', $content);
 
 		//paginator
 		if(isset($this->Paginator))
 		{
-			echo $html->div('paging', $this->element('paging', array('search' => $current_searchterms)));
+			echo $this->Html->div('paging', $this->element('paging', array('search' => $current_searchterms)));
 		}
 
-	echo $html->tag('/div')."\n"; //div.input
-echo $html->tag('/div')."\n"; //div.panel
+	echo $this->Html->tag('/div')."\n"; //div.input
+echo $this->Html->tag('/div')."\n"; //div.panel
 
 
-echo $html->div('hide', $form->submit( __('Go', true), array('class' => 'btnEnter')));
-echo $form->end();
+echo $this->Html->div('hide', $this->Form->submit( __('Go', true), array('class' => 'btnEnter')));
+echo $this->Form->end();
 
 ?>
