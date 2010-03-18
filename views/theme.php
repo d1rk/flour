@@ -88,15 +88,6 @@ class ThemeView extends View {
 		$viewPaths = App::path('views');
 		$corePaths = array_flip(App::core('views'));
 
-		if (!empty($plugin)) {
-			$count = count($viewPaths);
-			for ($i = 0; $i < $count; $i++) {
-				if (!isset($corePaths[$viewPaths[$i]])) {
-					$paths[] = $viewPaths[$i] . 'plugins' . DS . $plugin . DS;
-				}
-			}
-			$paths[] = App::pluginPath($plugin) . 'views' . DS;
-		}
 		$paths = array_merge($paths, $viewPaths);
 
 		$themePaths = array();
@@ -117,6 +108,17 @@ class ThemeView extends View {
 			$lastone = array_pop($paths); //move last path (hopefully the cake-core) ...
 			$paths = array_merge($paths, $themePaths); // (merge theme-path in)
 			$paths[] = $lastone; //... to the last place in array
+			
+			//append plugin-paths later on
+			if (!empty($plugin)) {
+				$count = count($viewPaths);
+				for ($i = 0; $i < $count; $i++) {
+					if (!isset($corePaths[$viewPaths[$i]])) {
+						$paths[] = $viewPaths[$i] . 'plugins' . DS . $plugin . DS;
+					}
+				}
+				$paths[] = App::pluginPath($plugin) . 'views' . DS;
+			}
 		}
 		return $paths;
 	}
