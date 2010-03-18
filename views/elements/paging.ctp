@@ -5,11 +5,11 @@
 	{
 		$info[] = '<div class="btnbar">';
 		$info[] = '<ul class="pager">';
-		$info[] = '<li class="img">'.$paginator->first($html->image('global/ico/resultset_first.png'), $options).'</li>';
-		$info[] = '<li class="img">'.$paginator->prev($html->image('global/ico/resultset_previous.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->first($html->image('/flour/img/ico/resultset_first.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->prev($html->image('/flour/img/ico/resultset_previous.png'), $options).'</li>';
 		$info[] = $paginator->numbers(array('separator' => '', 'tag' => 'li'));
-		$info[] = '<li class="img">'.$paginator->next($html->image('global/ico/resultset_next.png'), $options).'</li>';
-		$info[] = '<li class="img">'.$paginator->last($html->image('global/ico/resultset_last.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->next($html->image('/flour/img/ico/resultset_next.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->last($html->image('/flour/img/ico/resultset_last.png'), $options).'</li>';
 		$info[] = '</ul>';
 		$info[] = '</div>';
 	}
