@@ -147,7 +147,14 @@ echo $this->Html->div('panel');
 
 		if(!empty($current_searchterms))
 		{
-		//	$content = $this->Text->highlight($content, $current_searchterms, '<span class="highlight">\1</span>', true);
+			//highlights the searchterm in output
+			$content = $this->Text->highlight(
+				$content,
+				$current_searchterms,
+				array(
+					'format' => '<span class="highlight">\1</span>', //format of replace
+					'html' => true, //will take care of html
+				));
 		}
 
 		echo $this->Html->div('items', $content);
