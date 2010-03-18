@@ -4,6 +4,6 @@ $links = (!isset($links)) ? array() : $links;
 
 if(!empty($links))
 {
-	echo $this->Html->div('navSub', $this->Html->nestedList($links));
+	echo $this->Html->div('btnbar navSub', $this->Html->nestedList($links));
 }
 ?>
