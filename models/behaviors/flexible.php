@@ -11,9 +11,9 @@
  * Licensed under The MIT License
  * Redistributions of files must retain the above copyright notice.
  *
- * @author     Dirk Bruensicke <dirk@bruensicke.com>
+ * @author	   Dirk Bruensicke <dirk@bruensicke.com>
  * @copyright  2009 Dirk Bruensicke
- * @license    http://www.opensource.org/licenses/mit-license.php   The MIT License
+ * @license	   http://www.opensource.org/licenses/mit-license.php	The MIT License
  */
 class FlexibleBehavior extends ModelBehavior
 {
@@ -21,7 +21,7 @@ class FlexibleBehavior extends ModelBehavior
 /**
  * Contains configuration settings for use with individual model objects.  This
  * is used because if multiple models use this Behavior, each will use the same
- * object instance.  Individual model settings should be stored as an
+ * object instance.	 Individual model settings should be stored as an
  * associative array, keyed off of the model name.
  *
  * @var array
@@ -39,7 +39,7 @@ class FlexibleBehavior extends ModelBehavior
  * @return array
  * @access public
  */
-    function setup(&$Model, $settings = array())
+	function setup(&$Model, $settings = array())
 	{
 		$base = array('schema' => $Model->schema());
 		if (isset($settings['with'])) //connect with given model
@@ -76,23 +76,23 @@ class FlexibleBehavior extends ModelBehavior
  * @return array
  * @access public
  */
-    function afterFind(&$Model, $results, $primary)
+	function afterFind(&$Model, $results, $primary)
 	{
 		extract($this->settings[$Model->alias]);
-        foreach ($results as $i => $item)
-        {
-            if (!isset($item[$with]))
-            {
-                continue;
-            }
-            foreach ($item[$with] as $field)
-            {
-                $results[$i][$Model->alias][$field['name']] = $field['val'];
-            }
-        }
+		foreach ($results as $i => $item)
+		{
+			if (!isset($item[$with]))
+			{
+				continue;
+			}
+			foreach ($item[$with] as $field)
+			{
+				$results[$i][$Model->alias][$field['name']] = $field['val'];
+			}
+		}
 		$results = $this->unserialize_items($results); //will convert JSON Strings back to arrays
-        return $results;
-    }
+		return $results;
+	}
 
 /**
  * Flattens all $keys
@@ -115,17 +115,17 @@ class FlexibleBehavior extends ModelBehavior
  * @param object $Model
  * @access public
  */
-    function beforeSave(&$Model)
+	function beforeSave(&$Model)
 	{
-        $fields = $Model->data[$Model->alias];
-        foreach ($fields as $key => $val)
+		$fields = $Model->data[$Model->alias];
+		foreach ($fields as $key => $val)
 		{
 			if(is_array($val))
 			{
-                $val = json_encode($val);
-            }
-            $Model->data[$Model->alias][$key] = $val;
-        }
+				$val = json_encode($val);
+			}
+			$Model->data[$Model->alias][$key] = $val;
+		}
 	}
 
 /**
@@ -135,28 +135,28 @@ class FlexibleBehavior extends ModelBehavior
  * @param object $Model
  * @access public
  */
-    function afterSave(&$Model)
+	function afterSave(&$Model)
 	{
-        extract($this->settings[$Model->alias]);
-        $fields = array_diff_key($Model->data[$Model->alias], $schema);
-        $id = $Model->id;
-        foreach ($fields as $key => $val)
+		extract($this->settings[$Model->alias]);
+		$fields = array_diff_key($Model->data[$Model->alias], $schema);
+		$id = $Model->id;
+		foreach ($fields as $key => $val)
 		{
-            $field = $Model->{$with}->find('first', array(
-                'fields' => array($with.'.id'),
-                'conditions' => array($with.'.'.$foreignKey => $id, $with.'.name' => $key),
-                'recursive' => -1,
-            ));
-            $Model->{$with}->create(false);
-            if ($field) {
-                $Model->{$with}->set('id', $field[$with]['id']);
-            } else {
-                $Model->{$with}->set(array($foreignKey => $id, 'name' => $key));
-            }
-            $Model->{$with}->set('val', $val);
-            $Model->{$with}->save();
-        }
-    }
+			$field = $Model->{$with}->find('first', array(
+				'fields' => array($with.'.id'),
+				'conditions' => array($with.'.'.$foreignKey => $id, $with.'.name' => $key),
+				'recursive' => -1,
+			));
+			$Model->{$with}->create(false);
+			if ($field) {
+				$Model->{$with}->set('id', $field[$with]['id']);
+			} else {
+				$Model->{$with}->set(array($foreignKey => $id, 'name' => $key));
+			}
+			$Model->{$with}->set('val', $val);
+			$Model->{$with}->save();
+		}
+	}
 
 /**
  * Checks if string is serialized array/object
@@ -166,21 +166,21 @@ class FlexibleBehavior extends ModelBehavior
  * @access public
  * @return boolean
  */
-    function isSerialized($str)
-    {
-        // json_decode returns NULL in some environments, if $str is not encoded
-    	return (// check json notation
-            	preg_match('/^[\{].*[\}]$|^[\[].*[\]]$/',$str)
-                && 
-                // handle NULL - values
-                ($str === "null"
-                || @json_decode($str) !== NULL)
-                &&
-                // handle FALSE - values
-                ( $str == json_decode(false)
-                || @json_decode($str) !== false )
-        );
-    }
+	function isSerialized($str)
+	{
+		// json_decode returns NULL in some environments, if $str is not encoded
+		return (// check json notation
+				preg_match('/^[\{].*[\}]$|^[\[].*[\]]$/',$str)
+				&& 
+				// handle NULL - values
+				($str === "null"
+				|| @json_decode($str) !== NULL)
+				&&
+				// handle FALSE - values
+				( $str == json_decode(false)
+				|| @json_decode($str) !== false )
+		);
+	}
 
 /**
  * Unserializes the fields of an array (if the value itself was serialized)
@@ -189,21 +189,21 @@ class FlexibleBehavior extends ModelBehavior
  * @return array
  * @access public
  */
-    function unserialize_items($arr)
-    {
-        foreach($arr as $key => $val)
-        {
-    		if(is_array($val))
-            {
-                $val = $this->unserialize_items($val);
-            } elseif($this->isSerialized($val))
-            {
-                $val = json_decode($val, true); //converts to array
-            }
-            $arr[$key] = $val;
-        }
-        return $arr;
-    }
+	function unserialize_items($arr)
+	{
+		foreach($arr as $key => $val)
+		{
+			if(is_array($val))
+			{
+				$val = $this->unserialize_items($val);
+			} elseif($this->isSerialized($val))
+			{
+				$val = json_decode($val, true); //converts to array
+			}
+			$arr[$key] = $val;
+		}
+		return $arr;
+	}
 
 }
 

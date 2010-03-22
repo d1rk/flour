@@ -108,7 +108,8 @@ echo $this->Html->div('panel');
 
 		foreach($filters as $name => $link)
 		{
-			$filter[] = $this->Html->link( $name, array_merge($merge, $link), array('class' => (empty($this->params['named'])) ? 'active' : null));
+			$active = (Router::url($link) == $this->here) ? 'active' : null;
+			$filter[] = $this->Html->link( $name, array_merge($merge, $link), array('class' => $active));
 		}
 	}
 

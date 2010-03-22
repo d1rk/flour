@@ -53,7 +53,6 @@ div.panel {
 			}
 
 	div.items div.item.hover {
-		border-left: 4px solid #e6e6e6;
 		background: #E5ECF9;
 		}
 		
@@ -336,19 +335,11 @@ a.flag.active {
 .filter ul a,
 ul.filter li a, a.filter {
 	color: #777;
-	text-shadow: 0 1px 0px rgba(240,240,240,.35);
-	padding: 8px 8px 3px;
+	text-shadow: 0 1px 1px rgba(120,120,120,.35);
+	padding: 7px 10px 3px;
 	white-space: nowrap;
 	background: #DADADA;
 	text-decoration: none;
-	}
-
-.filter ul a.active {
-		color: #efefef;
-		font-weight: bold;
-		padding: 5px 8px 6px;
-		text-shadow: 0 1px 0px rgba(0,0,0,.35);
-		background: #c0c0c0;
 	}
 
 .filter ul a:hover, 
@@ -356,6 +347,13 @@ ul.filter a:hover {
 		color: #efefef;
 		text-shadow: 0 1px 0px rgba(0,0,0,.35);
 		background: #c0c0c0;
+	}
+
+.filter ul a.active {
+		color: #efefef;
+		font-weight: bold;
+		text-shadow: 0 1px 0px rgba(0,0,0,.55);
+		background: #555;
 	}
 
 span.filter { display: block; }

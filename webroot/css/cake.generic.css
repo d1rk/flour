@@ -128,11 +128,11 @@ h4 {
 }
 #navMain ul li a:hover {
 	color: #333;
-	background: #F2F2F2;
+	background: #bbb;
 }
 #navMain ul li a.active {
 	color: #222;
-	background: #fff;
+	background: #F2F2F2;
 }
 
 /* USERNAV */
