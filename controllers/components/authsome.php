@@ -28,7 +28,7 @@ class AuthsomeComponent extends Object{
 	);
 
 	public $settings = array(
-		'model' => 'User',
+		'model' => 'Flour.User',
 		'configureKey' => null,
 		'sessionKey' => null,
 		'cookieKey' => null,

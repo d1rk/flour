@@ -7,21 +7,21 @@ if(!empty($user))
 	$nav[] = $this->Html->tag('span', String::insert( __('hello :name', true), $user['User']));
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'settings', 'admin' => false);
-	$active = (Router::url($link) == $this->here) ? 'active' : '';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav[] = $this->Html->link( __('settings', true), $link, array('class' => $active));
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'logout', 'admin' => false);
-	$active = (Router::url($link) == $this->here) ? 'active' : '';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav[] = $this->Html->link( __('logout', true), $link, array('class' => $active));
 
 } else {
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'login', 'admin' => false);
-	$active = (Router::url($link) == $this->here) ? 'active' : '';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav[] = $this->Html->link( __('login', true), $link, array('class' => $active));
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'register', 'admin' => false);
-	$active = (Router::url($link) == $this->here) ? 'active' : '';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav[] = $this->Html->link( __('register', true), $link, array('class' => $active));
 }
 

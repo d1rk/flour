@@ -5,7 +5,7 @@ if(Configure::read('Env.installed')) $user = Authsome::get();
 if(!empty($user))
 {
 	$link = array('controller' => 'pages', 'action' => 'display', 'home');
-	$active = (Router::url($link) == $this->here) ? 'active' : '';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav[] = $this->Html->link( __('Home', true), $link, array('class' => $active));
 
 } else {

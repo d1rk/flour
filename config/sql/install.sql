@@ -1,4 +1,4 @@
-CREATE TABLE `flour_users` (
+CREATE TABLE IF NOT EXISTS `flour_users` (
   `id` CHAR(36) NOT NULL DEFAULT '',
   `name` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
@@ -8,7 +8,7 @@ CREATE TABLE `flour_users` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE `flour_login_tokens` (
+CREATE TABLE IF NOT EXISTS `flour_login_tokens` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `user_id` CHAR(36) NOT NULL,
   `token` CHAR(32) NOT NULL,
@@ -17,5 +17,5 @@ CREATE TABLE `flour_login_tokens` (
   `created` DATETIME NOT NULL,
   `expires` DATETIME NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

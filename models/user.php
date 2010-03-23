@@ -11,7 +11,11 @@
  **/
 class User extends AppModel
 {
-	public $hasMany = array('Flour.LoginToken');
+	var $tablePrefix = 'flour_';
+
+	public $hasMany = array(
+		'Flour.LoginToken'
+	);
 	
 	var $validate = array(
 		'name' => array(

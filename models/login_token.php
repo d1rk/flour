@@ -11,6 +11,10 @@
  **/
 class LoginToken extends AppModel
 {
-	var $hasOne = array('User');
+	var $tablePrefix = 'flour_';
+
+	var $hasOne = array(
+		'User'
+	);
 }
 ?>
