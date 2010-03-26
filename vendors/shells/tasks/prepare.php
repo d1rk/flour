@@ -1,7 +1,8 @@
 <?php
 class PrepareTask extends FlourShell
 {
-	var $methods = array('init');
+
+	var $verbose = false;
 
 /**
  * initialize
@@ -9,31 +10,27 @@ class PrepareTask extends FlourShell
  * @return void
  */
 	function initialize() {
-		$this->path = ROOT.'plugins/flour/templates';
+		$this->path = ROOT.'/plugins/flour/templates';
+		$this->target = ROOT;
 	}
-
 
 	function execute()
 	{
-		$method = array_shift($this->args);
-		if(empty($method))
-		{
-			$method = 'help';
-		}
 		$this->prepare();
+		//TOOD: set verbose to true on -v
 	}
 	
 	function prepare()
 	{
 		$this->out('');
 		$this->out('   copying files from templates to app.');
-		$this->out('');
-		
 		$Folder =& new Folder($this->path);
-		$files = $Folder->cd();
-
-		debug($files);
-
+		$files = $Folder->findRecursive(); //find all files in flour/templates
+		foreach($files as $file)
+		{
+			$target = str_replace($this->path, $this->target, $file);
+			$this->createFile($target, @file_get_contents($file));
+		}
 		$this->out('');
 		$this->out('   done.');
 		$this->out('');

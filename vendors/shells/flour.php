@@ -6,6 +6,7 @@ class FlourShell extends Shell
 		'ProgressBar',
 		'SqlFile',
 		'Install',
+		'Prepare',
 	);
 
 	var $methods = array(
@@ -32,6 +33,7 @@ class FlourShell extends Shell
 		$this->out('  available tasks: ');
 		$this->out('');
 		$this->out('  - install      installs all relevant tables');
+		$this->out('  - prepare      copies needed files from flour/templates to app/');
 		$this->out('  - help         prints the help you are looking at, right now.');
 		$this->out('');
 	}
