@@ -1,6 +1,10 @@
 <?php
 class InstallTask extends FlourShell
 {
+	var $methods = array(
+		'install',
+	);
+
 	var $defaultFile = '/plugins/flour/config/sql/install.sql';
 
 	function execute()
