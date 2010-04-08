@@ -21,45 +21,73 @@ class FlashComponent extends Object
 	
 	public $filterAjax = true;
 	
+	public $preserveNamedParams = true;
+	
 	public function initialize($controller)
 	{
 		$this->Controller = $controller;
 	}
-		
-	public function msg($key = 'default', $message = '', $redirect = false, $replace = array())
+
+	public function msg($element = 'flash_info', $message = '', $redirect = false, $options = array())
 	{
-		$replace = (is_array($replace) && !empty($replace))
-			? $replace
+		$replace = (array_key_exists('replace', $options) && is_array($options['replace']) && !empty($options['replace']))
+			? $options['replace']
 			: $this->Controller->data;
 
 		$message = (is_array($replace) && !empty($replace))
 			? String::insert($message, Set::flatten($replace))
 			: $message;
 
+		$params = (array_key_exists('params', $options) && is_array($options['params']) && !empty($options['params']))
+			? $options['params']
+			: null;
+
+		$key = (array_key_exists('key', $options) && is_string($options['key']) && !empty($options['key']))
+			? $options['key']
+			: null;
+
+		if(array_key_exists('named', $options) && is_bool($options['named']))
+		{
+			$this->preserveNamedParams = $options['named'];
+		}
+
 		// Halt and put JSON if request was AJAX. 
 		if ($this->RequestHandler->isAjax() && $this->filterAjax) {
 			$this->RequestHandler->respondAs('json');
 			echo "// FLASH MESSAGE ".time()."\n";
-			die('{"message":"'.$message.'", "type":"'.$key.'"}');
+			die('{"message":"'.$message.'", "type":"'.$key.'", "params":"'.json_encode($params).'"}');
 		}
-		
-		$this->Session->setFlash($message, 'flash_'.$key);	
-		
-		if ($redirect)
+
+		$this->Session->setFlash($message, $element, $params, $key);
+
+		if (!empty($redirect))
 		{
+			if($redirect === true)
+			{
+				$redirect = $this->Controller->referer();
+			}
+
+			//TODO: convert $redirect to array if its a string
+			if($this->preserveNamedParams && is_array($this->Controller->params['named']) && is_array($redirect))
+			{
+				$redirect = array_merge($this->Controller->params['named'], $redirect);
+			}
 			$this->Controller->redirect($redirect);
 		}
 	}
 	
-	public function error($message, $redirect = false) {
-		$this->msg('error', $message, $redirect);
+	public function error($message, $redirect = false, $options = array())
+	{
+		$this->msg('flash_error', $message, $redirect, $options);
 	}
 	
-	public function success($message, $redirect = false) {
-		$this->msg('success', $message, $redirect);
+	public function success($message, $redirect = false, $options = array())
+	{
+		$this->msg('flash_success', $message, $redirect, $options);
 	}
 	
-	public function info($message, $redirect = false) {
-		$this->msg('info', $message, $redirect);
+	public function info($message, $redirect = false, $options = array())
+	{
+		$this->msg('flash_info', $message, $redirect, $options);
 	}
 }
