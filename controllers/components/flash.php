@@ -26,8 +26,12 @@ class FlashComponent extends Object
 		$this->Controller = $controller;
 	}
 		
-	public function msg($key = 'default', $message = '', $replace = array(), $redirect = false)
+	public function msg($key = 'default', $message = '', $redirect = false, $replace = array())
 	{
+		$replace = (is_array($replace) && !empty($replace))
+			? $replace
+			: $this->Controller->data;
+
 		$message = (is_array($replace) && !empty($replace))
 			? String::insert($message, Set::flatten($replace))
 			: $message;
@@ -47,15 +51,15 @@ class FlashComponent extends Object
 		}
 	}
 	
-	public function error($message, $replace = false, $redirect = false) {
-		$this->msg('error', $message, $replace, $redirect);
+	public function error($message, $redirect = false) {
+		$this->msg('error', $message, $redirect);
 	}
 	
-	public function success($message, $replace = false, $redirect = false) {
-		$this->msg('success', $message, $replace, $redirect);
+	public function success($message, $redirect = false) {
+		$this->msg('success', $message, $redirect);
 	}
 	
-	public function info($message, $replace = false, $redirect = false) {
-		$this->msg('info', $message, $replace, $redirect);
+	public function info($message, $redirect = false) {
+		$this->msg('info', $message, $redirect);
 	}
 }
