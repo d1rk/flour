@@ -5,7 +5,7 @@
 
 /* General Style Info */
 body {
-	background: #2f2f2f;
+	background: #323232 url(../img/bg-dark.png);
 	color: #fff;
 	font-family:'lucida grande',verdana,helvetica,arial,sans-serif;
 	font-size:90%;
@@ -66,6 +66,8 @@ h1 {
 }
 h2 {
 	color: #e32;
+	text-shadow: rgba(190, 190, 190, 0.5) 0px -1px 1px;
+	text-shadow: rgb(227, 227, 227) 0px 1px;
 	font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif;
 	font-size: 190%;
 	margin: 0 0 0.3em 0;
@@ -89,7 +91,8 @@ h4 {
 
 #header{
 	padding: 10px 20px;
-	background: #111;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 1px;
+	background: rgba(0, 0, 0, 0.05);
 }
 #header h1 {
 	color: #fff;
@@ -211,6 +214,7 @@ h4 {
 
 #footer {
 	color: #888;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px 1px 2px;
 	font-size: 12px;
 	clear: both;
 	padding: 6px 10px;
