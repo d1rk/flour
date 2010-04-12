@@ -104,7 +104,6 @@ class UsersController extends AppController {
 		{
 			return;
 		}
-
 		$user = Authsome::login($this->data['User']);
 
 		if (!$user)

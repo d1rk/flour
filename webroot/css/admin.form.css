@@ -384,9 +384,12 @@ table {
 		color: #454545;
 		font-size: smaller;
 		line-height: 19px;
-		padding: 1px 3px 0 4px;
 		border-bottom: 1px solid #BCC2C7;
 		}
+
+	th img {
+		padding: 1px 0 2px 0;
+	}
 
 	td {
 		padding: 4px 4px 4px 5px;
