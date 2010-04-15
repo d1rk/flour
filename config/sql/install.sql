@@ -32,6 +32,39 @@ CREATE TABLE IF NOT EXISTS `flour_login_tokens` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `flour_custom_lists` (
+  `id` char(36) NOT NULL,
+  `status` int(3) default '0',
+  `slug` varchar(255) NOT NULL default '',
+  `description` tinytext,
+  `name` varchar(255) NOT NULL COMMENT 'internal name',
+  `title` varchar(255) NOT NULL,
+  `created` datetime NOT NULL,
+  `created_by` char(36) NOT NULL,
+  `modified` datetime default NULL,
+  `modified_by` char(36) default NULL,
+  `deleted` datetime default NULL,
+  `deleted_by` char(36) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+CREATE TABLE IF NOT EXISTS `flour_custom_list_items` (
+  `id` char(36) NOT NULL,
+  `custom_list_id` char(36) NOT NULL,
+  `status` int(3) default '0',
+  `slug` varchar(255) NOT NULL default '',
+  `description` tinytext,
+  `name` varchar(255) NOT NULL COMMENT 'internal name',
+  `val` TEXT NULL,
+  `created` datetime NOT NULL,
+  `created_by` char(36) NOT NULL,
+  `modified` datetime default NULL,
+  `modified_by` char(36) default NULL,
+  `deleted` datetime default NULL,
+  `deleted_by` char(36) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 CREATE TABLE IF NOT EXISTS `flour_nodes` (
   `id` char(36) NOT NULL,
   `type` varchar(255) NOT NULL default 'page',

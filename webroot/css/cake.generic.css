@@ -131,7 +131,7 @@ h4 {
 }
 #navMain ul li a:hover {
 	color: #333;
-	background: #bbb;
+	background: #bbb url('../img/bg-tabs.png') bottom repeat-x;
 }
 #navMain ul li a.active {
 	color: #222;
@@ -518,6 +518,12 @@ div.btnbar {
 
 	div.btnbar ul { list-style: none; }
 	div.btnbar ul li { display: inline-block; margin-right: 6px; }
+
+div.navbar {
+	background: rgba(0, 0, 0, 0.6);  /* FF3+, Saf3+, Opera 10.10+, Chrome */
+	filter:  progid:DXImageTransform.Microsoft.gradient(startColorStr='#99B4B490',EndColorStr='#99B4B490'); /* IE6,IE7 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#99B4B490',EndColorStr='#99B4B490')"; /* IE8 */
+}
 
 /* Related */
 div.related {

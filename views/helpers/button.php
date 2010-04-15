@@ -19,6 +19,13 @@ class ButtonHelper extends AppHelper
 
 	var $ico = '/flour/img/ico/:ico.png';
 
+	var $size = 16;
+
+	var $classes = array('ui-button', 'ui-state-default', 'ui-corner-all');
+
+	var $white = '/flour/img/white/:size/:ico.png';
+	var $black = '/flour/img/black/:size/:ico.png';
+
 /**
  * List of helpers used internally
  *
@@ -30,6 +37,42 @@ class ButtonHelper extends AppHelper
 	);
 
 /**
+ * creates a link (with white icon, if given)
+ *
+ * @return array
+ * @access public
+ */
+	function white($name, $link = array(), $options = array())
+	{
+		$ico = $this->ico;
+		$classes = $this->classes;
+		$this->classes = array();
+		$this->ico = $this->white;
+		$output = $this->link($name, $link, $options);
+		$this->ico = $ico;
+		$this->classes = $classes;
+		return $output;
+	}
+
+/**
+ * creates a link (with black icon, if given)
+ *
+ * @return array
+ * @access public
+ */
+	function black($name, $link = array(), $options = array())
+	{
+		$ico = $this->ico;
+		$classes = $this->classes;
+		$this->classes = array();
+		$this->ico = $this->black;
+		$output = $this->link($name, $link, $options);
+		$this->ico = $ico;
+		$this->classes = $classes;
+		return $output;
+	}
+
+/**
  * creates a link (with icon, if given)
  *
  * @return array
@@ -38,7 +81,7 @@ class ButtonHelper extends AppHelper
 	function link($name, $link = array(), $options = array())
 	{
 		$defaults = array(
-			'class' => array('ui-button', 'ui-state-default', 'ui-corner-all'),
+			'class' => $this->classes,
 		);
 
 		if(!isset($options['class']))
@@ -53,8 +96,13 @@ class ButtonHelper extends AppHelper
 
 		if(isset($options['ico']))
 		{
-			$img = $this->Html->image(String::insert($this->ico, array('ico' => $options['ico'])), array('width' => '16', 'height' => '16'));
+			if(!isset($options['size']))
+			{
+				$options['size'] = $this->size;
+			}
+			$img = $this->image($options);
 			unset($options['ico']);
+			unset($options['size']);
 		} else {
 			$img = null;
 		}
@@ -63,7 +111,11 @@ class ButtonHelper extends AppHelper
 		
 		$options['escape'] = false;
 		
-		$output = $this->Html->link($this->Html->tag('span', $img).$this->Html->tag('span', $name, array('class' => 'ui-button-text')), $link, $options);
+		if(!empty($img))
+		{
+			$name = $this->Html->tag('span', $img).$this->Html->tag('span', $name, array('class' => 'ui-button-text'));
+		}
+		$output = $this->Html->link($name, $link, $options);
 		return $this->output($output);
 	}
 
@@ -97,6 +149,20 @@ class ButtonHelper extends AppHelper
 		
 		$output = $this->Html->tag('button', $this->Html->tag('span', $img).$this->Html->tag('span', $name, array('class' => 'ui-button-text')), $options);
 		return $this->output($output);
+	}
+
+	function image($options)
+	{
+		$img = $this->Html->image(
+			String::insert(
+				$this->ico, array(
+					'ico' => $options['ico'],
+					'size' => $options['size']
+				)
+			),
+			array('width' => $options['size'], 'height' => $options['size'])
+		);
+		return $img;
 	}
 
 	function output($lines = '')
