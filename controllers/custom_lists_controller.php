@@ -10,15 +10,8 @@
  * @copyright bruensicke.com
  **/
 
-class CustomListsController extends AppController {
-/**
- * The name of this controller. Controller names are plural, named after the model they manipulate.
- *
- * @var string
- * @access public
- */
-	var $name = 'CustomLists';
-
+class CustomListsController extends AppController
+{
 	var $paginate = array(
 		'CustomList' => array(
 			'limit' => 100,
