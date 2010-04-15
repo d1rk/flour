@@ -17,6 +17,10 @@ class GridHelper extends AppHelper
 
 	var $connector = '';
 
+	var $last = false;
+
+	var $row = 0;
+
 /**
  * List of helpers used internally
  *
@@ -64,16 +68,15 @@ class GridHelper extends AppHelper
  */
 	function span($span = 24, $content = null, $options = array())
 	{
-		$output = array();
-		if(is_bool($content))
+		$this->calculate($span);
+		if(is_bool($content) )
 		{
 			$class = "span-$span last";
 			$content = null;
 		} else {
 			$class = "span-$span";
 		}
-		$output[] = $this->Html->div($class, $content, $options);
-		return $this->output($output);
+		return $this->output($this->Html->div($class, $content, $options));
 	}
 
 /**
@@ -86,6 +89,17 @@ class GridHelper extends AppHelper
 		$output = array();
 		$output[] = $this->Html->tag('/div'); //TODO: Calculate correct span and output number
 		return $this->output($output);
+	}
+
+	function calculate($span)
+	{
+		$this->row = $this->row + $span;
+		if($this->row >= 24)
+		{
+			$this->last = true;
+			$this->row = 0;
+		}
+		return $this->last;
 	}
 
 	function output($lines = '')

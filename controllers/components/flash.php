@@ -26,6 +26,10 @@ class FlashComponent extends Object
 	public function initialize($controller)
 	{
 		$this->Controller = $controller;
+		if(!in_array('Session', $this->Controller->components))
+		{
+			array_unshift($this->Controller->components, 'Session');
+		}
 	}
 
 	public function msg($element = 'flash_info', $message = '', $redirect = false, $options = array())
@@ -73,6 +77,7 @@ class FlashComponent extends Object
 				$redirect = array_merge($this->Controller->params['named'], $redirect);
 			}
 			$this->Controller->redirect($redirect);
+			return $redirect;
 		}
 	}
 	
