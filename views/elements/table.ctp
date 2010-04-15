@@ -13,7 +13,7 @@ $footer = (isset($footer))
 
 $data = (isset($data))
 	? $data
-	: array();
+	: $this->data;
 
 $empty = (isset($empty))
 	? $empty
