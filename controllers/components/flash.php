@@ -48,7 +48,7 @@ class FlashComponent extends Object
 
 		$key = (array_key_exists('key', $options) && is_string($options['key']) && !empty($options['key']))
 			? $options['key']
-			: null;
+			: 'flash';
 
 		if(array_key_exists('named', $options) && is_bool($options['named']))
 		{
@@ -61,8 +61,7 @@ class FlashComponent extends Object
 			echo "// FLASH MESSAGE ".time()."\n";
 			die('{"message":"'.$message.'", "type":"'.$key.'", "params":"'.json_encode($params).'"}');
 		}
-
-		$this->Session->setFlash($message, $element, $params, $key);
+		$this->Controller->Session->setFlash($message, $element, $params, $key);
 
 		if (!empty($redirect))
 		{
@@ -79,20 +78,21 @@ class FlashComponent extends Object
 			$this->Controller->redirect($redirect);
 			return $redirect;
 		}
+		return true;
 	}
 	
 	public function error($message, $redirect = false, $options = array())
 	{
-		$this->msg('flash_error', $message, $redirect, $options);
+		return $this->msg('flash_error', $message, $redirect, $options);
 	}
 	
 	public function success($message, $redirect = false, $options = array())
 	{
-		$this->msg('flash_success', $message, $redirect, $options);
+		return $this->msg('flash_success', $message, $redirect, $options);
 	}
 	
 	public function info($message, $redirect = false, $options = array())
 	{
-		$this->msg('flash_info', $message, $redirect, $options);
+		return $this->msg('flash_info', $message, $redirect, $options);
 	}
 }

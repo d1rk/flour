@@ -15,7 +15,7 @@ class AppModel extends Model
 
 	function beforeSave($options = null)
 	{
-		$user_id = CakeSession::read('Auth.User.id');
+		$user_id = Authsome::get('User.id');
 		if(isset($this->data[$this->name]['slug']) && $this->Behaviors->attached('Tree'))
 		{
 			$path = array();
@@ -34,6 +34,14 @@ class AppModel extends Model
 			$this->data[$this->name]['modified_by'] = $user_id;
 		}
 		return parent::beforeSave($options);
+	}
+
+	function afterSave($created)
+	{
+		if($created) {
+			$this->data[$this->alias]['id'] = $this->getLastInsertId();
+		}
+		return parent::afterSave($created);
 	}
 
 }
