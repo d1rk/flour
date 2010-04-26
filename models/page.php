@@ -1,7 +1,6 @@
 <?php
-class Page extends CmsAppModel {
-
-	var $name = 'Page';
+class Page extends CmsAppModel
+{
 	var $useTable = 'nodes';
 
 	var $actsAs = array(

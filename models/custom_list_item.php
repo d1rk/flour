@@ -13,8 +13,6 @@ class CustomListItem extends AppModel
 {
 	var $tablePrefix = 'flour_';
 
-	var $name = 'CustomListItem';
-
 	var $belongsTo = array('CustomList');
 }
 ?>

@@ -2,8 +2,6 @@
 /**
  * Login_Token Model
  * 
- * You can use this one.
- *
  * @package default
  * @author Dirk Brünsicke
  * @version $Id$

@@ -13,8 +13,6 @@ class CustomList extends AppModel
 {
 	var $tablePrefix = 'flour_';
 
-	var $name = 'CustomList';
-	
 #	var $hasMany = array('CustomListItem');
 }
 ?>
