@@ -29,6 +29,7 @@ class AppModel extends Model
 		}
 		if(empty($this->id) && empty($this->data[$this->name]['id']))
 		{
+			$this->data[$this->name]['user_id'] = $user_id;
 			$this->data[$this->name]['created_by'] = $user_id;
 		} else {
 			$this->data[$this->name]['modified_by'] = $user_id;

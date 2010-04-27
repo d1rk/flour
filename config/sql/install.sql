@@ -1,11 +1,11 @@
 CREATE TABLE IF NOT EXISTS `flour_activities` (
   `id` CHAR(36) NOT NULL,
+  `user_id` char(36) NULL,
   `type` VARCHAR(255) NOT NULL,
   `status` VARCHAR(40) NOT NULL,
   `message` text NOT NULL,
   `data` text NOT NULL,
   `created` datetime NOT NULL,
-  `modified` datetime default NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 

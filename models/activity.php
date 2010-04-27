@@ -11,36 +11,59 @@ class Activity extends AppModel
 {
 	var $tablePrefix = 'flour_';
 	var $types = array(
+		'user_loggedin' => 'user \':User.name\' logged in via \':User.loginType\'.',
+		'user_loggedout' => 'user \':User.name\' logged out.',
 		'object_created' => 'Created object \':name\' [:id]',
 		'object_updated' => 'Updated object \':name\' [:id]',
 		'object_deleted' => 'Deleted object \':name\' [:id]',
 	);
 
+	function __construct()
+	{
+		if($types = Configure::read('Flour.Activities.types'))
+		{
+			$this->types = array_merge($types, $this->types);
+		}
+		return parent::__construct();
+	}
+
 	function write($type, $data)
 	{
-		if(empty($data['stage_id'])) $data['stage_id'] = null;
-		if(empty($data['project_id'])) $data['project_id'] = null;
-
 		$row = array(
 			'type' => $type,
-			'data' => serialize($data),
+			'data' => $data,
 		);
 		if($this->create($row) && $this->save())
 		{
 			//everything went fine
-			return $this->read($type, $data);
+			return $this->parse($type, $data);
 		}
 		return false;
 	}
 
-	function read($type, $data)
+	function beforeSave($options = null)
 	{
-		foreach($data as $key => $value)
-		{
-			if(is_array($value)) unset($data[$key]);
+		$user_id = Authsome::get('User.id');
+		$this->data[$this->alias]['user_id'] = $user_id;
+		$this->data[$this->alias]['message'] = $this->parse($this->data[$this->alias]['type'], $this->data[$this->alias]['data']);
+		$this->data[$this->alias]['data'] = json_encode($this->data[$this->alias]['data']);
+		return parent::beforeSave($options);
+	}
+
+	//overwritten! Activities can not be deleted.
+	function delete()
+	{
+		return false;
+	}
+
+	//parse message
+	function parse($type, $data)
+	{
+		if(!array_key_exists($type, $this->types)) {
+			return false;
 		}
 		arsort($data);
-		return String::insert($this->types[$type], $data);
+		return String::insert($this->types[$type], Set::flatten($data));
 	}
 
 }

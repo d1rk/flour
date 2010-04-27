@@ -14,7 +14,8 @@ class User extends AppModel
 	var $tablePrefix = 'flour_';
 
 	public $hasMany = array(
-		'Flour.LoginToken'
+		'Flour.LoginToken',
+		'Flour.Activity',
 	);
 	
 	var $validate = array(
@@ -90,7 +91,7 @@ class User extends AppModel
 			default:
 				return null;
 		}
-		$user = $this->find('first', compact('conditions'));
+		$user = $this->find('first', compact('conditions')); //TODO: do not find activities
 		if (!$user) {
 			return false;
 		}

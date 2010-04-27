@@ -86,14 +86,19 @@ class AuthsomeComponent extends Object{
 
 		Configure::write($this->settings['configureKey'], $user);
 		$this->Session->write($this->settings['sessionKey'], $user);
+		if(!empty($user)) {
+			$userModel->Activity->write('user_loggedin', $user);
+		}
 		return $user;
 	}
 
 	public function logout() {
+		$userModel = $this->__getUserModel();
+		$user = Authsome::get();
+		$userModel->Activity->write('user_loggedout', $user);
 		Configure::write($this->settings['configureKey'], array());
 		$this->Session->write($this->settings['sessionKey'], array());
 		$this->Cookie->write($this->settings['cookieKey'], '');
-
 		return true;
 	}
 
