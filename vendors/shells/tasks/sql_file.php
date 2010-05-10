@@ -21,6 +21,7 @@ class SqlFileTask extends FlourShell {
  */
 	function import($fileName, $datasource = 'default')
 	{
+		App::import('ConnectionManager');
 		$ConnectionManager = &ConnectionManager::getInstance();
 		$ds = (array_key_exists($datasource, $ConnectionManager->config)) ? $datasource : 'default'; //check, if this datasource exists
 		$db = $ConnectionManager->getDataSource($ds);
