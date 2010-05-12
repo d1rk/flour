@@ -222,7 +222,7 @@ h4 {
 }
 
 #copyright {
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	right: 0;
 	clear: both;
