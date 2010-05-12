@@ -6,9 +6,7 @@ if(!empty($user))
 {
 	$nav[] = $this->Html->tag('span', String::insert( __('hello :name', true), $user['User']));
 
-	$link = '/';
-	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
-	$nav[] = $this->Html->link( __('home', true), $link, array('class' => $active));
+	$nav[] = $this->Html->link( __('home', true), '/');
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'settings', 'admin' => false);
 	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
