@@ -1,3 +1,3 @@
 <?php
-echo $html->div('empty stripes', $html->div('inner', $html->div('panel', $html->tag('h2', __('Keine Ergebnisse', true)))));
+echo $this->Html->div('empty stripes', $this->Html->div('inner', $this->Html->div('panel', $this->Html->tag('h2', __('Keine Ergebnisse', true)))));
 ?>
