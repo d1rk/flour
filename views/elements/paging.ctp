@@ -5,11 +5,11 @@
 	{
 		$info[] = '<div class="btnbar">';
 		$info[] = '<ul class="pager">';
-		$info[] = '<li class="img">'.$paginator->first($html->image('/flour/img/ico/resultset_first.png'), $options).'</li>';
-		$info[] = '<li class="img">'.$paginator->prev($html->image('/flour/img/ico/resultset_previous.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->first($this->Html->image('/flour/img/ico/resultset_first.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->prev($this->Html->image('/flour/img/ico/resultset_previous.png'), $options).'</li>';
 		$info[] = $paginator->numbers(array('separator' => '', 'tag' => 'li'));
-		$info[] = '<li class="img">'.$paginator->next($html->image('/flour/img/ico/resultset_next.png'), $options).'</li>';
-		$info[] = '<li class="img">'.$paginator->last($html->image('/flour/img/ico/resultset_last.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->next($this->Html->image('/flour/img/ico/resultset_next.png'), $options).'</li>';
+		$info[] = '<li class="img">'.$paginator->last($this->Html->image('/flour/img/ico/resultset_last.png'), $options).'</li>';
 		$info[] = '</ul>';
 		$info[] = '</div>';
 	}
@@ -38,5 +38,5 @@
 	}
 	$info[] = '</span>';
 
-	echo $html->div('paginator', join("\n", $info));
+	echo $this->Html->div('paginator', join("\n", $info));
 ?>

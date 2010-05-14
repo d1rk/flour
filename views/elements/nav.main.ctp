@@ -1,16 +1,17 @@
 <?php
-$nav = array();
-if(Configure::read('Env.installed')) $user = Authsome::get();
+#if(Configure::read('Env.installed'))
+$user = Authsome::get();
 
 if(!empty($user))
 {
-	$link = array('controller' => 'pages', 'action' => 'display', 'home');
-	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
-	$nav[] = $this->Html->link( __('Home', true), $link, array('class' => $active));
-
+	$this->Nav->add('Main', array(
+		'name' => __('Home', true),
+		'url' => array('controller' => 'pages', 'action' => 'display', 'home'),
+		'type' => 'Html',
+	));
 } else {
 
 }
 
-echo $this->Html->nestedList($nav);
+echo $this->Nav->show('Main', 'main');
 ?>

@@ -93,6 +93,16 @@ class NavHelper extends AppHelper
 						'sortbuttons' => false,
 						'sortable' => false,
 					),
+				'main' => array(
+						'title' => false,
+						'div' => true,
+						'divclass' => 'navMain',
+						'ulclass' => '',
+						'show_page' => false,
+						'show_edit' => false,
+						'sortbuttons' => false,
+						'sortable' => false,
+					),
 				'primary' => array(
 						'title' => false,
 						'div' => true,
@@ -259,29 +269,24 @@ class NavHelper extends AppHelper
 			}
 
 			//the link itself, yeeha
-			if(empty($url))
+			
+			$type = (isset($type))
+				? Inflector::humanize($type)
+				: 'Html';
+
+			if(empty($url)) $_rel = (!empty($rel)) ? ' rel="'.$rel.'"' : '';
+
+			switch($type)
 			{
-				$_rel = (!empty($rel)) ? ' rel="'.$rel.'"' : '';
-				$output .= '<span'.$_rel.'>'.$name.'</span>';
-			} else {
-				
-				$type = (isset($type))
-					? Inflector::humanize($type)
-					: 'Html';
-
-				switch($type)
-				{
-					case 'Button':
-						$output .= $this->Button->button($name, $attributes);
-						break;
-					case 'Link':
-						$output .= $this->Button->link($name, $url, $attributes);
-						break;
-					case 'Html':
-					default:
-						$output .= $this->Html->link($name, $url, $attributes);
-				}
-
+				case 'Button':
+					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
+					break;
+				case 'Link':
+					$output .= $this->Button->link($name, $url, $attributes);
+					break;
+				case 'Html':
+				default:
+					$output .= $this->Html->link($name, $url, $attributes);
 			}
 
 			//show page-relation?
@@ -300,7 +305,7 @@ class NavHelper extends AppHelper
 			{
 				$output .= "</li>";
 			}
-			unset($class);
+			unset($class, $url);
 		}
 		$output .= $tabs . "</ul>";
 		return $output;

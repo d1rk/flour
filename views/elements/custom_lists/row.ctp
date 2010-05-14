@@ -10,8 +10,8 @@ EOF;
 $data = array();
 $data['counter'] = $i;
 $data['even'] = $even;
-$data['created'] = $html->tag('span', date('d.m.', strtotime($row['Client']['created'])), array('title' => $row['Client']['created']));
-$data['modified'] = $html->tag('span', date('d.m.', strtotime($row['Client']['modified'])), array('title' => $row['Client']['modified']));
+$data['created'] = $this->Html->tag('span', date('d.m.', strtotime($row['Client']['created'])), array('title' => $row['Client']['created']));
+$data['modified'] = $this->Html->tag('span', date('d.m.', strtotime($row['Client']['modified'])), array('title' => $row['Client']['modified']));
 
 $data['name'] = $this->Html->link(
 	$row['CustomList']['name'], 
