@@ -93,6 +93,16 @@ class NavHelper extends AppHelper
 						'sortbuttons' => false,
 						'sortable' => false,
 					),
+				'main' => array(
+						'title' => false,
+						'div' => true,
+						'divclass' => 'navMain',
+						'ulclass' => '',
+						'show_page' => false,
+						'show_edit' => false,
+						'sortbuttons' => false,
+						'sortable' => false,
+					),
 				'primary' => array(
 						'title' => false,
 						'div' => true,

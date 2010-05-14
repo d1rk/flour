@@ -11,5 +11,5 @@ echo $this->Html->div('', $this->element('nav.user'), array('id' => 'navUser'));
 	?></h1>
 </div>
 <?php
-echo $this->Html->div('', $this->element('nav.main'), array('id' => 'navMain'));
+echo $this->element('nav.main');
 ?>
