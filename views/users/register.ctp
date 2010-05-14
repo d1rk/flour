@@ -9,7 +9,7 @@ $this->Nav->add('Primary', array(
 
 $this->Nav->add('Primary', array(
 	'name' =>  __('save', true),
-	'type' => 'link',
+	'type' => 'button',
 	'ico' => 'disk',
 	'class' => 'positive',
 ));
