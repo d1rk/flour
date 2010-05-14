@@ -31,7 +31,12 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view
  */
-class ThemeView extends View {
+class ThemeView extends View
+{
+	public $title;
+	
+	public $crumbs = array();
+	
 /**
  * Constructor for ThemeView sets $this->theme.
  *
@@ -39,6 +44,7 @@ class ThemeView extends View {
  */
 	function __construct(&$controller, $register = true) {
 		parent::__construct($controller, $register);
+		$this->title = $this->name;
 		$this->theme =& $controller->theme;
 	}
 
@@ -68,7 +74,17 @@ class ThemeView extends View {
  */
 	function element($name, $params = array(), $loadHelpers = false) {
 		if(!isset($params['plugin'])) $params['plugin'] = 'flour'; //set plugin to flour, if nothing was given
-		return parent::element($name, $params, $loadHelpers);
+		if(!Configure::read())
+		{
+			return parent::element($name, $params, $loadHelpers);
+		}
+		$output = parent::element($name, $params, $loadHelpers);
+		return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";
+	}
+
+	//TODO: use for something useful
+	function _render($___viewFn, $___dataForView, $loadHelpers = true, $cached = false) {
+		return parent::_render($___viewFn, $___dataForView, $loadHelpers, $cached);
 	}
 
 /**

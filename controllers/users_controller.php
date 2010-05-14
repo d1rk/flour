@@ -108,7 +108,7 @@ class UsersController extends AppController {
 
 		if (!$user)
 		{
-			$this->Session->setFlash('Unknown user or wrong password');
+			$this->Flash->error('Unknown user or wrong password');
 			return;
 		}
 		
@@ -117,7 +117,7 @@ class UsersController extends AppController {
 			Authsome::persist('2 weeks');
 		}
 
-		$this->Session->setFlash( __('Logged in successfully.', true));
+		$this->Flash->info( __('Logged in successfully.', true));
 		$this->redirect('/');
 	}
 }
