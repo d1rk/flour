@@ -38,6 +38,7 @@ class NavHelper extends AppHelper
 		'onfocus',
 		'onhover',
 		'ondblclick',
+		'confirm',
 	);
 
 	var $texts = array(

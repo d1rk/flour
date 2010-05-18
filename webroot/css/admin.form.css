@@ -463,7 +463,8 @@ div.paginator {
 	
 	div.paginator img {
 		position: relative;
-		top: 4px;
+		top: 1px;
+		vertical-align:top;
 	}
 
 	div.paginator span.img span {
