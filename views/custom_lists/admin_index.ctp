@@ -16,7 +16,6 @@ echo $this->element('content_start');
 
 	echo $grid->open();
 		echo $this->element('table', array(
-			'data' => $this->data,
 			'element' => 'custom_lists/row',
 			'search' => true,
 		));
