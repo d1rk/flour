@@ -76,16 +76,21 @@ echo $this->Html->div('panel');
 
 			if(!empty($current_searchterms))
 			{
-				echo $this->Html->tag('span', $this->Html->link( __('reset', true), array('action' => $this->action)));
+				$url = array('action' => $this->action);
+				if($preserveNamedParams && isset($this->params['named'])) {
+					$params = $this->params['named'];
+					unset($params['search']);
+					$url = array_merge($url, $params);
+				}
+				echo $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
 			}
-/*
-			debug($this->params);
+
 			echo $this->Form->hidden('Model.name', array('value' => $search));
-			if(isset($this->params['named']) && !empty($this->params['named']) && $preserveNamedParams)
+			if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
 			{
 				echo $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
 			}
-*/			echo $this->Form->input('search', array(
+			echo $this->Form->input('search', array(
 				'label' => false,
 				'value' => $current_searchterms,
 				'class' => 'search',
@@ -115,11 +120,11 @@ echo $this->Html->div('panel');
 		$merge = $filter = array(); //prepare an array that will fit together search-conditions
 		if(!empty($this->params['named']['search'])) $merge['search'] = $this->params['named']['search']; //add searchterm, if entered
 		if(!empty($this->params['named']['date'])) $merge['date'] = $this->params['named']['date']; //add from_date, if entered
-
+		
 		foreach($filters as $name => $link)
 		{
-			$active = (Router::url($link) == $this->here) ? 'active' : null;
-			$filter[] = $this->Html->link( $name, array_merge($merge, $link), array('class' => $active));
+			$active = (Router::url(array_merge($link, $merge)) == $this->here) ? 'active' : null;
+			$filter[] = $this->Html->link( $name, array_merge($link, $merge), array('class' => $active));
 		}
 	}
 
