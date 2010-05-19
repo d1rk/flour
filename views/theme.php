@@ -31,7 +31,11 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view
  */
-class ThemeView extends View {
+class ThemeView extends View
+{
+	public $title;
+	
+	public $crumbs = array();
 	
 /**
  * Constructor for ThemeView sets $this->theme.
@@ -40,6 +44,7 @@ class ThemeView extends View {
  */
 	function __construct(&$controller, $register = true) {
 		parent::__construct($controller, $register);
+		$this->title = $this->name;
 		$this->theme =& $controller->theme;
 	}
 

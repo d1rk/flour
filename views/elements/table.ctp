@@ -23,6 +23,10 @@ $search = (isset($search))
 	? $search
 	: null;
 
+$preserveNamedParams = (isset($preserveNamedParams))
+	? $preserveNamedParams
+	: true;
+
 $current_searchterms = (isset($current_searchterms))
 	? $current_searchterms
 	: '';
@@ -74,8 +78,14 @@ echo $this->Html->div('panel');
 			{
 				echo $this->Html->tag('span', $this->Html->link( __('reset', true), array('action' => $this->action)));
 			}
+/*
+			debug($this->params);
 			echo $this->Form->hidden('Model.name', array('value' => $search));
-			echo $this->Form->input('search', array(
+			if(isset($this->params['named']) && !empty($this->params['named']) && $preserveNamedParams)
+			{
+				echo $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
+			}
+*/			echo $this->Form->input('search', array(
 				'label' => false,
 				'value' => $current_searchterms,
 				'class' => 'search',

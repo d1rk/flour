@@ -358,7 +358,36 @@ ul.filter a:hover {
 
 span.filter { display: block; }
 span.filter ul { list-style: none; }
-span.filter ul li a { display: block; float: left; border-right: 1px solid #ccc; }
+span.filter ul li a { float: left; border-right: 1px solid #ccc; }
+
+.tabs ul a,
+ul.tabs li a, a.tab {
+	color: #777;
+	text-shadow: 0 1px 1px rgba(120,120,120,.35);
+	padding: 7px 10px 3px;
+	white-space: nowrap;
+	background: #DADADA;
+	text-decoration: none;
+	}
+
+.tabs ul a:hover, 
+ul.tabs a:hover {
+		color: #efefef;
+		text-shadow: 0 1px 0px rgba(0,0,0,.35);
+		background: #c0c0c0;
+	}
+
+.tabs ul a.active {
+		color: #efefef;
+		font-weight: bold;
+		text-shadow: 0 1px 0px rgba(0,0,0,.55);
+		background: #555;
+	}
+
+span.tabs { display: block; }
+span.tabs ul { list-style: none; }
+span.tabs ul li { display: inline-block; }
+span.tabs ul li a { display: inline-block; border-right: 1px solid #ccc; }
 
 ul.horiz li { margin: 0; }
 ul.horiz li a { padding: 4px; }
@@ -434,7 +463,8 @@ div.paginator {
 	
 	div.paginator img {
 		position: relative;
-		top: 4px;
+		top: 1px;
+		vertical-align:top;
 	}
 
 	div.paginator span.img span {
