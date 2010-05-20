@@ -97,7 +97,7 @@ class NavHelper extends AppHelper
 				'main' => array(
 						'title' => false,
 						'div' => true,
-						'divclass' => 'navMain',
+						'divclass' => 'navbar',
 						'ulclass' => '',
 						'show_page' => false,
 						'show_edit' => false,
