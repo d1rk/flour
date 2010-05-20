@@ -89,6 +89,7 @@ if(!empty($search))
 			$btnbar_content[] = $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
 		}
 
+		$btnbar_content[] = '&nbsp;'; //needed for placement in caption (line-height)
 		$btnbar_content[] = $this->Form->hidden('Model.name', array('value' => $search));
 		if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
 		{
@@ -132,54 +133,50 @@ if(!empty($search))
 		}
 	}
 
-	//rendr input
-	$box_content[] = $this->Html->div('input'); //TODO: add model-class
+	if(!empty($filter))
+	{
+		echo $this->Html->tag('span', $this->Html->nestedList($filter), array('class' => 'filter'));
+	}
 
-		if(!empty($filter))
+	//rows
+	if(count($data))
+	{
+		$rows = array();
+		$i = 0;
+		
+		foreach($data as $ind => $row)
 		{
-			echo $this->Html->tag('span', $this->Html->nestedList($filter), array('class' => 'filter'));
+			$row = (isset($prefix)) ? array($prefix => $row) : $row;
+			$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
 		}
 
-		//rows
-		if(count($data))
-		{
-			$rows = array();
-			$i = 0;
-			
-			foreach($data as $ind => $row)
-			{
-				$row = (isset($prefix)) ? array($prefix => $row) : $row;
-				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
-			}
+		//insertion of item-template in main-template
+		$connector = (Configure::read()) ? "\n" : '';
+		$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
 
-			//insertion of item-template in main-template
-			$connector = (Configure::read()) ? "\n" : '';
-			$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
-	
-		} else {
-			$content = $empty;
-		}
+	} else {
+		$content = $empty;
+	}
 
-		if(!empty($current_searchterms))
-		{
-			//highlights the searchterm in output
-			$content = $this->Text->highlight(
-				$content,
-				$current_searchterms,
-				array(
-					'format' => '<span class="highlight">\1</span>', //format of replace
-					'html' => true, //will take care of html
-				));
-		}
+	if(!empty($current_searchterms))
+	{
+		//highlights the searchterm in output
+		$content = $this->Text->highlight(
+			$content,
+			$current_searchterms,
+			array(
+				'format' => '<span class="highlight">\1</span>', //format of replace
+				'html' => true, //will take care of html
+			));
+	}
 
-		$box_content[] = $this->Html->div('items', $content);
+	$box_content[] = $this->Html->div('items', $content);
 
-		//paginator
-		$footer = (isset($this->Paginator))
-			? $this->Html->div('footer', $this->element('paging', array('search' => $current_searchterms)))
-			: null;
+	//paginator
+	$footer = (isset($this->Paginator))
+		? $this->Html->div('footer', $this->element('paging', array('search' => $current_searchterms)))
+		: null;
 
-	$box_content[] = $this->Html->tag('/div')."\n"; //div.input
 	$btnbar_content[] = $btnbar;
 	$btnbar_content = implode($btnbar_content);
 
