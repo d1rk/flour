@@ -286,9 +286,6 @@ class NavHelper extends AppHelper
 				? $url
 				: false;
 
-			
-
-
 			switch($type)
 			{
 				case 'Button':
