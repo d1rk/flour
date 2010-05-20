@@ -7,10 +7,6 @@ $btnbar = (isset($btnbar))
 	? $btnbar
 	: '';
 
-$btnbar = (is_array($btnbar))
-	? $this->Html->nestedList($btnbar)
-	: $btnbar;
-
 $description = (isset($description))
 	? $description
 	: '';
@@ -32,15 +28,19 @@ if (!empty($caption) || !empty($btnbar))
 
 	echo $this->Html->div('caption');
 
-		echo (!empty($btnbar))
+		echo (!empty($btnbar) && is_string($btnbar))
 			? $this->Html->div('btnbar', $btnbar)
 			: null;
 
-		echo (is_string($caption))
+		echo (!empty($btnbar) && is_array($btnbar))
+			? $this->Html->nestedList($btnbar)
+			: null;
+
+		echo (!empty($caption) && is_string($caption))
 			? $this->Html->tag('h2', $caption)
 			: null;
 
-		echo (is_array($caption))
+		echo (!empty($caption) && is_array($caption))
 			? $this->Html->nestedList($caption)
 			: null;
 
