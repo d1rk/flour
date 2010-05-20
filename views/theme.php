@@ -35,6 +35,8 @@ class ThemeView extends View
 {
 	public $title;
 
+	var $admin = false;
+
 	var $debugMode = false;
 
 	public $_crumbs = array();
@@ -46,6 +48,9 @@ class ThemeView extends View
  */
 	function __construct(&$controller, $register = true) {
 		parent::__construct($controller, $register);
+		$this->admin = (isset($this->params['admin']) && $this->params['admin'])
+			? true
+			: false;
 		$this->title = $this->name;
 		$this->theme =& $controller->theme;
 	}
