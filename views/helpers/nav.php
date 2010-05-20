@@ -187,6 +187,7 @@ class NavHelper extends AppHelper
 		} else {
 			$output = $this->list_element_links($name, $this->cItems[$name]);
 		}
+#		debug($output);
 		return $this->output($output);
 	}
 
@@ -251,6 +252,10 @@ class NavHelper extends AppHelper
 				? 'item_'.$slug.'_'.$id
 				: null;
 
+			$attributes['rel'] = (isset($id))
+				? $id
+				: null;
+
 			$attributes['class'] = implode(' ', $class);
 
 			$output .= $li_tabs.$this->Html->tag('li', null, $attributes);
@@ -277,6 +282,13 @@ class NavHelper extends AppHelper
 
 			if(empty($url)) $_rel = (!empty($rel)) ? ' rel="'.$rel.'"' : '';
 
+			$url = (isset($url) && !empty($url))
+				? $url
+				: false;
+
+			
+
+
 			switch($type)
 			{
 				case 'Button':
@@ -287,7 +299,12 @@ class NavHelper extends AppHelper
 					break;
 				case 'Html':
 				default:
-					$output .= $this->Html->link($name, $url, $attributes);
+					if($url)
+					{
+						$output .= $this->Html->link($name, $url, $attributes);
+					} else {
+						$output .= $this->Html->tag('span', $name, $attributes);
+					}
 			}
 
 			//show page-relation?

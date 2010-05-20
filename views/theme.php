@@ -34,7 +34,9 @@
 class ThemeView extends View
 {
 	public $title;
-	
+
+	var $debugMode = false;
+
 	public $crumbs = array();
 	
 /**
@@ -74,12 +76,12 @@ class ThemeView extends View
  */
 	function element($name, $params = array(), $loadHelpers = false) {
 		if(!isset($params['plugin'])) $params['plugin'] = 'flour'; //set plugin to flour, if nothing was given
-		if(!Configure::read())
-		{
-			return parent::element($name, $params, $loadHelpers);
-		}
 		$output = parent::element($name, $params, $loadHelpers);
-		return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";
+		if(Configure::read() && $this->debugMode)
+		{
+			return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";
+		}
+		return $output;
 	}
 
 	//TODO: use for something useful
