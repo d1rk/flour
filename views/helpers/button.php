@@ -21,7 +21,8 @@ class ButtonHelper extends AppHelper
 
 	var $size = 16;
 
-	var $classes = array('ui-button', 'ui-state-default', 'ui-corner-all');
+#	var $classes = array('ui-button', 'ui-state-default', 'ui-corner-all');
+	var $classes = array();
 
 	var $white = '/flour/img/white/:size/:ico.png';
 	var $black = '/flour/img/black/:size/:ico.png';

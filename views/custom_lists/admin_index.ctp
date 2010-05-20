@@ -1,5 +1,5 @@
 <?php
-$this->Html->addCrumb( __('CustomLists', true), array('controller' => 'custom_lists', 'action' => 'index'));
+$this->addCrumb( __('CustomLists', true), array('controller' => 'custom_lists', 'action' => 'index'));
 
 $this->Nav->add('Primary', array(
 	'name' => __('Add CustomList', true),

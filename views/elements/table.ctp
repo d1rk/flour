@@ -47,13 +47,17 @@ $caption = (isset($caption))
 	? $caption
 	: null;
 
+$btnbar = (isset($btnbar))
+	? $btnbar
+	: null;
+
 $template = (isset($template))
 	? $template
 	: '{{rows}}';
 
 
 /* BEGIN OF RENDERING */
-$box_content = $btnbar = array();
+$box_content = $btnbar_content = array();
 
 //needed for daterange picker
 //echo $this->Html->script(array('global/jquery/daterange'));
@@ -70,43 +74,34 @@ if(!empty($search))
 
 
 
-if(!empty($caption))
-{
-#	echo $this->Html->div('caption', $caption);
-}
 
 
-
-#echo $this->Html->div('box');
-	//input for search
 	if(!empty($search))
 	{
-		$btnbar[] = $this->Html->div('', null, array('style' => 'padding: 4px; margin-right: 6px;'));
-
-			if(!empty($current_searchterms))
-			{
-				$url = array('action' => $this->action);
-				if($preserveNamedParams && isset($this->params['named'])) {
-					$params = $this->params['named'];
-					unset($params['search']);
-					$url = array_merge($url, $params);
-				}
-				$btnbar[] = $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
+		if(!empty($current_searchterms))
+		{
+			$url = array('action' => $this->action);
+			if($preserveNamedParams && isset($this->params['named'])) {
+				$params = $this->params['named'];
+				unset($params['search']);
+				$url = array_merge($url, $params);
 			}
+			$btnbar_content[] = $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
+		}
 
-			$btnbar[] = $this->Form->hidden('Model.name', array('value' => $search));
-			if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
-			{
-				$btnbar[] = $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
-			}
-			$btnbar[] = $this->Form->input('search', array(
-				'label' => false,
-				'value' => $current_searchterms,
-				'class' => 'search',
-				'div' => false,
-				'title' => __('Search', true),
-			));
-		$btnbar[] = $this->Html->tag('/div')."\n";
+		$btnbar_content[] = $this->Form->hidden('Model.name', array('value' => $search));
+		if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
+		{
+			$btnbar_content[] = $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
+		}
+		$btnbar_content[] = $this->Form->input('search', array(
+			'label' => false,
+			'value' => $current_searchterms,
+			'class' => 'search',
+			'div' => false,
+			'title' => __('Search', true),
+		));
+		$btnbar_content[] = '&nbsp;'; //needed for placement in caption (line-height)
 	}
 
 	//input for date
@@ -185,14 +180,12 @@ if(!empty($caption))
 			: null;
 
 	$box_content[] = $this->Html->tag('/div')."\n"; //div.input
-
-	$btnbar = (!empty($btnbar))
-		? implode($btnbar)
-		: null;
+	$btnbar_content[] = $btnbar;
+	$btnbar_content = implode($btnbar_content);
 
 echo $this->element('box', array(
 	'caption' => $caption,
-	'btnbar' => $btnbar,
+	'btnbar' => $btnbar_content,
 	'label' => (!empty($label))
 		? $label
 		: null,

@@ -25,7 +25,6 @@ $footer = (isset($footer))
 
 if (!empty($caption) || !empty($btnbar))
 {
-
 	echo $this->Html->div('caption');
 
 		echo (!empty($btnbar) && is_string($btnbar))

@@ -9,6 +9,7 @@ $().ready(function(){
 	$('*[title]').tipsy();
 
 	$("tr, div.items div.item").hover(function(){$(this).addClass("hover");},function(){$(this).removeClass("hover");});
+	$("tr, div.items div.item").click(function(){$(this).toggleClass("active");});
 	$("tr th a[href*=direction:asc]").addClass("asc");
 	$("tr th a[href*=direction:desc]").addClass("desc");
 
