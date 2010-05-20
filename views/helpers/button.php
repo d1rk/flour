@@ -123,7 +123,7 @@ class ButtonHelper extends AppHelper
 	function button($name, $options = array())
 	{
 		$defaults = array(
-			'class' => array('ui-button', 'ui-state-default', 'ui-corner-all'),
+			'class' => array(),
 		);
 
 		if(!isset($options['class']))
