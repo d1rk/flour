@@ -53,26 +53,35 @@ $template = (isset($template))
 
 
 /* BEGIN OF RENDERING */
-
+$box_content = $btnbar = array();
 
 //needed for daterange picker
 //echo $this->Html->script(array('global/jquery/daterange'));
 //echo $this->Html->css(array('global/jquery/daterange'));
 
 //searchform + daterange
-echo $this->Form->create('', array('action' => 'search'));
+//TODO: switch for search-form
+if(!empty($search))
+{
+	echo $this->Form->create('', array('action' => 'search'));
+}
 
-echo $this->Html->div('panel');
 
-	if(!empty($caption))
-	{
-		echo $this->Html->div('caption', $caption);
-	}
 
+
+
+if(!empty($caption))
+{
+#	echo $this->Html->div('caption', $caption);
+}
+
+
+
+#echo $this->Html->div('box');
 	//input for search
 	if(!empty($search))
 	{
-		echo $this->Html->div('btnbar', null, array('style' => 'padding: 4px; margin-right: 6px;'));
+		$btnbar[] = $this->Html->div('', null, array('style' => 'padding: 4px; margin-right: 6px;'));
 
 			if(!empty($current_searchterms))
 			{
@@ -82,22 +91,22 @@ echo $this->Html->div('panel');
 					unset($params['search']);
 					$url = array_merge($url, $params);
 				}
-				echo $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
+				$btnbar[] = $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
 			}
 
-			echo $this->Form->hidden('Model.name', array('value' => $search));
+			$btnbar[] = $this->Form->hidden('Model.name', array('value' => $search));
 			if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
 			{
-				echo $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
+				$btnbar[] = $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
 			}
-			echo $this->Form->input('search', array(
+			$btnbar[] = $this->Form->input('search', array(
 				'label' => false,
 				'value' => $current_searchterms,
 				'class' => 'search',
 				'div' => false,
 				'title' => __('Search', true),
 			));
-		echo $this->Html->tag('/div')."\n";
+		$btnbar[] = $this->Html->tag('/div')."\n";
 	}
 
 	//input for date
@@ -129,12 +138,7 @@ echo $this->Html->div('panel');
 	}
 
 	//rendr input
-	echo $this->Html->div('input'); //TODO: add model-class
-
-		if(!empty($label))
-		{
-			echo $this->Html->tag('label', $label);
-		}
+	$box_content[] = $this->Html->div('input'); //TODO: add model-class
 
 		if(!empty($filter))
 		{
@@ -173,19 +177,35 @@ echo $this->Html->div('panel');
 				));
 		}
 
-		echo $this->Html->div('items', $content);
+		$box_content[] = $this->Html->div('items', $content);
 
 		//paginator
-		if(isset($this->Paginator))
-		{
-			echo $this->Html->div('paging', $this->element('paging', array('search' => $current_searchterms)));
-		}
+		$footer = (isset($this->Paginator))
+			? $this->Html->div('footer', $this->element('paging', array('search' => $current_searchterms)))
+			: null;
 
-	echo $this->Html->tag('/div')."\n"; //div.input
-echo $this->Html->tag('/div')."\n"; //div.panel
+	$box_content[] = $this->Html->tag('/div')."\n"; //div.input
+
+	$btnbar = (!empty($btnbar))
+		? implode($btnbar)
+		: null;
+
+echo $this->element('box', array(
+	'caption' => $caption,
+	'btnbar' => $btnbar,
+	'label' => (!empty($label))
+		? $label
+		: null,
+	'content' => implode($box_content),
+	'footer' => $footer,
+));
 
 
-echo $this->Html->div('hide', $this->Form->submit( __('Go', true), array('class' => 'btnEnter')));
-echo $this->Form->end();
+
+if(!empty($search))
+{
+	echo $this->Html->div('hide', $this->Form->submit( __('Go', true), array('class' => 'btnEnter')));
+	echo $this->Form->end();
+}
 
 ?>

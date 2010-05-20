@@ -37,7 +37,7 @@ class ThemeView extends View
 
 	var $debugMode = false;
 
-	public $crumbs = array();
+	public $_crumbs = array();
 	
 /**
  * Constructor for ThemeView sets $this->theme.
@@ -48,6 +48,47 @@ class ThemeView extends View
 		parent::__construct($controller, $register);
 		$this->title = $this->name;
 		$this->theme =& $controller->theme;
+	}
+
+/**
+ * Adds a link to the breadcrumbs array.
+ *
+ * @param string $name Text for link
+ * @param string $link URL for link (if empty it won't be a link)
+ * @param mixed $options Link attributes e.g. array('id'=>'selected')
+ * @return void
+ * @see HtmlHelper::link() for details on $options that can be used.
+ * @access public
+ */
+	function addCrumb($name, $link = null, $options = null) {
+		$this->_crumbs[] = array($name, $link, $options);
+	}
+
+/**
+ * Returns the breadcrumb trail as an unordered list of links.
+ *
+ * @param string $startText This will be the first crumb, if false it defaults to first crumb in array
+ * @return string Composed bread crumbs
+ * @access public
+ */
+	function getCrumbs($startText = false) {
+		if (!empty($this->_crumbs)) {
+			$out = array();
+			if ($startText) {
+				$out[] = $this->Html->link($startText, '/');
+			}
+
+			foreach ($this->_crumbs as $crumb) {
+				if (!empty($crumb[1])) {
+					$out[] = $this->Html->link($crumb[0], $crumb[1], $crumb[2]);
+				} else {
+					$out[] = $crumb[0];
+				}
+			}
+			return $out;
+		} else {
+			return null;
+		}
 	}
 
 
