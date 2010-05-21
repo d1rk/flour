@@ -15,6 +15,10 @@ $label = (isset($label))
 	? $label
 	: '';
 
+$class = (isset($class))
+	? $class
+	: 'box';
+
 $content = (isset($content))
 	? $content
 	: '';
@@ -46,7 +50,7 @@ if (!empty($caption) || !empty($btnbar))
 	echo $this->Html->tag('/div'); //div.caption
 }
 
-echo $this->Html->div('box');
+echo $this->Html->div($class);
 
 	echo (!empty($label))
 		? $this->Html->tag('label', $label)
