@@ -15,6 +15,13 @@ class LayoutComponent extends Object
 
 	var $view = 'Flour.Theme';
 
+	var $components = array(
+		'Session',
+		'Cookie',
+		'RequestHandler',
+		'Flour.Flash',
+	);
+
 	var $__controller;
 
 	var $__flourHelpers = array(
@@ -47,7 +54,6 @@ class LayoutComponent extends Object
 		$this->__controller->view = $this->view;
 		$this->__controller->theme = Configure::read('App.theme');
 
-		$this->checkController();
 
 		if (!empty($this->__controller->params['prefix']) && in_array($this->__controller->params['prefix'], Configure::read('Routing.prefixes')))
 		{
@@ -55,10 +61,23 @@ class LayoutComponent extends Object
 		}
 	}
 
+	function startup()
+	{
+		$this->checkController();
+	}
+
 	function checkController()
 	{
 		$this->__controller->helpers = array_merge($this->__controller->helpers, $this->__flourHelpers);
-		$this->__controller->components = array_merge($this->__controller->components, $this->__flourComponents);
+
+		$loaded = array_keys($this->__controller->Component->_loaded);
+		foreach($loaded as $component)
+		{
+			if(!isset($this->__controller->$component))
+			{
+				$this->__controller->$component = $this->__controller->Component->_loaded[$component];
+			}
+		}
 	}
 }
 
