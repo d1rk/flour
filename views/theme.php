@@ -52,7 +52,9 @@ class ThemeView extends View
 			? true
 			: false;
 		$this->title = $this->name;
-		$this->theme =& $controller->theme;
+		$this->theme = ($this->admin)
+			? Configure::read('Admin.theme')
+			: $controller->theme;
 	}
 
 /**
