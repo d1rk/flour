@@ -109,31 +109,31 @@ h4 {
 }
 
 /* NAVIGATION */
-.navMain{
+.navbar {
 	background: #353535;
 	clear: both;
 	color: #F2F2F2;
 	padding: 10px 20px 0px 20px;
 	overflow: hidden;
 }
-.navMain ul { 
+.navbar ul { 
 	list-style: none; 
 }
-.navMain ul li { 
+.navbar ul li { 
 	display: inline; 
 }
-.navMain ul li a {
+.navbar ul li a {
 	color: #F2F2F2;
 	padding: 6px 10px 4px 10px;
 	display: block;
 	float: left;
 	text-decoration: none; 
 }
-.navMain ul li a:hover {
+.navbar ul li a:hover {
 	color: #333;
 	background: #bbb url('../img/bg-tabs.png') bottom repeat-x;
 }
-.navMain ul li a.active {
+.navbar ul li a.active {
 	color: #222;
 	background: #F2F2F2;
 }
