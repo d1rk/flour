@@ -47,8 +47,16 @@ $caption = (isset($caption))
 	? $caption
 	: null;
 
+$class = (isset($class))
+	? $class
+	: null;
+
 $btnbar = (isset($btnbar))
 	? $btnbar
+	: null;
+
+$actions = (isset($actions))
+	? $actions
 	: null;
 
 $template = (isset($template))
@@ -131,11 +139,7 @@ if(!empty($search))
 			$active = (Router::url(array_merge($link, $merge)) == $this->here) ? 'active' : null;
 			$filter[] = $this->Html->link( $name, array_merge($link, $merge), array('class' => $active));
 		}
-	}
-
-	if(!empty($filter))
-	{
-		echo $this->Html->tag('span', $this->Html->nestedList($filter), array('class' => 'filter'));
+		$filters = $filter;
 	}
 
 	//rows
@@ -181,8 +185,11 @@ if(!empty($search))
 	$btnbar_content = implode($btnbar_content);
 
 echo $this->element('box', array(
+	'class' => $class,
 	'caption' => $caption,
 	'btnbar' => $btnbar_content,
+	'filters' => $filters,
+	'actions' => $actions,
 	'label' => (!empty($label))
 		? $label
 		: null,
@@ -202,5 +209,7 @@ $url = Router::url(array('controller' => $this->params['controller'], 'action' =
 
 echo $this->Html->scriptBlock('
 	$("tr, div.items div.item").dblclick(function(){ var id = $(this).attr("rel"); document.location = "'.$url.'/" + id; });
+	$("div.actions").hide();
+	
 ');
 ?>
