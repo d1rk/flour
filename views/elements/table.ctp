@@ -23,6 +23,10 @@ $search = (isset($search))
 	? $search
 	: null;
 
+$preserveNamedParams = (isset($preserveNamedParams))
+	? $preserveNamedParams
+	: true;
+
 $current_searchterms = (isset($current_searchterms))
 	? $current_searchterms
 	: '';
@@ -43,46 +47,70 @@ $caption = (isset($caption))
 	? $caption
 	: null;
 
+$class = (isset($class))
+	? $class
+	: null;
+
+$btnbar = (isset($btnbar))
+	? $btnbar
+	: null;
+
+$actions = (isset($actions))
+	? $actions
+	: null;
+
 $template = (isset($template))
 	? $template
 	: '{{rows}}';
 
 
 /* BEGIN OF RENDERING */
-
+$box_content = $btnbar_content = array();
 
 //needed for daterange picker
 //echo $this->Html->script(array('global/jquery/daterange'));
 //echo $this->Html->css(array('global/jquery/daterange'));
 
 //searchform + daterange
-echo $this->Form->create('', array('action' => 'search'));
+//TODO: switch for search-form
+if(!empty($search))
+{
+	echo $this->Form->create('', array('action' => 'search'));
+}
 
-echo $this->Html->div('panel');
 
-	if(!empty($caption))
-	{
-		echo $this->Html->div('caption', $caption);
-	}
 
-	//input for search
+
+
+
+
 	if(!empty($search))
 	{
-		echo $this->Html->div('btnbar', null, array('style' => 'padding: 4px; margin-right: 6px;'));
-
-			if(!empty($current_searchterms))
-			{
-				echo $this->Html->tag('span', $this->Html->link( __('reset', true), array('action' => $this->action)));
+		if(!empty($current_searchterms))
+		{
+			$url = array('action' => $this->action);
+			if($preserveNamedParams && isset($this->params['named'])) {
+				$params = $this->params['named'];
+				unset($params['search']);
+				$url = array_merge($url, $params);
 			}
-			echo $this->Form->hidden('Model.name', array('value' => $search));
-			echo $this->Form->input('search', array(
-				'label' => false,
-				'value' => $current_searchterms,
-				'class' => 'search',
-				'div' => false,
-				'title' => __('Search', true),
-			));
-		echo $this->Html->tag('/div')."\n";
+			$btnbar_content[] = $this->Html->tag('span', $this->Html->link( __('reset', true), $url));
+		}
+
+		$btnbar_content[] = '&nbsp;'; //needed for placement in caption (line-height)
+		$btnbar_content[] = $this->Form->hidden('Model.name', array('value' => $search));
+		if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
+		{
+			$btnbar_content[] = $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
+		}
+		$btnbar_content[] = $this->Form->input('search', array(
+			'label' => false,
+			'value' => $current_searchterms,
+			'class' => 'search',
+			'div' => false,
+			'title' => __('Search', true),
+		));
+		$btnbar_content[] = '&nbsp;'; //needed for placement in caption (line-height)
 	}
 
 	//input for date
@@ -105,72 +133,83 @@ echo $this->Html->div('panel');
 		$merge = $filter = array(); //prepare an array that will fit together search-conditions
 		if(!empty($this->params['named']['search'])) $merge['search'] = $this->params['named']['search']; //add searchterm, if entered
 		if(!empty($this->params['named']['date'])) $merge['date'] = $this->params['named']['date']; //add from_date, if entered
-
+		
 		foreach($filters as $name => $link)
 		{
-			$active = (Router::url($link) == $this->here) ? 'active' : null;
-			$filter[] = $this->Html->link( $name, array_merge($merge, $link), array('class' => $active));
+			$active = (Router::url(array_merge($link, $merge)) == $this->here) ? 'active' : null;
+			$filter[] = $this->Html->link( $name, array_merge($link, $merge), array('class' => $active));
 		}
+		$filters = $filter;
 	}
 
-	//rendr input
-	echo $this->Html->div('input'); //TODO: add model-class
-
-		if(!empty($label))
+	//rows
+	if(count($data))
+	{
+		$rows = array();
+		$i = 0;
+		
+		foreach($data as $ind => $row)
 		{
-			echo $this->Html->tag('label', $label);
+			$row = (isset($prefix)) ? array($prefix => $row) : $row;
+			$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
 		}
 
-		if(!empty($filter))
-		{
-			echo $this->Html->tag('span', $this->Html->nestedList($filter), array('class' => 'filter'));
-		}
+		//insertion of item-template in main-template
+		$connector = (Configure::read()) ? "\n" : '';
+		$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
 
-		//rows
-		if(count($data))
-		{
-			$rows = array();
-			$i = 0;
-			
-			foreach($data as $ind => $row)
-			{
-				$row = (isset($prefix)) ? array($prefix => $row) : $row;
-				$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
-			}
+	} else {
+		$content = $empty;
+	}
 
-			//insertion of item-template in main-template
-			$connector = (Configure::read()) ? "\n" : '';
-			$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
+	if(!empty($current_searchterms))
+	{
+		//highlights the searchterm in output
+		$content = $this->Text->highlight(
+			$content,
+			$current_searchterms,
+			array(
+				'format' => '<span class="highlight">\1</span>', //format of replace
+				'html' => true, //will take care of html
+			));
+	}
+
+	$box_content[] = $this->Html->div('items', $content);
+
+	//paginator
+	$footer = (isset($this->Paginator))
+		? $this->Html->div('footer', $this->element('paging', array('search' => $current_searchterms)))
+		: null;
+
+	$btnbar_content[] = $btnbar;
+	$btnbar_content = implode($btnbar_content);
+
+echo $this->element('box', array(
+	'class' => $class,
+	'caption' => $caption,
+	'btnbar' => $btnbar_content,
+	'filters' => $filters,
+	'actions' => $actions,
+	'label' => (!empty($label))
+		? $label
+		: null,
+	'content' => implode($box_content),
+	'footer' => $footer,
+));
+
+
+
+if(!empty($search))
+{
+	echo $this->Html->div('hide', $this->Form->submit( __('Go', true), array('class' => 'btnEnter')));
+	echo $this->Form->end();
+}
+
+$url = Router::url(array('controller' => $this->params['controller'], 'action' => 'edit'));
+
+echo $this->Html->scriptBlock('
+	$("tr, div.items div.item").dblclick(function(){ var id = $(this).attr("rel"); document.location = "'.$url.'/" + id; });
+	$("div.actions").hide();
 	
-		} else {
-			$content = $empty;
-		}
-
-		if(!empty($current_searchterms))
-		{
-			//highlights the searchterm in output
-			$content = $this->Text->highlight(
-				$content,
-				$current_searchterms,
-				array(
-					'format' => '<span class="highlight">\1</span>', //format of replace
-					'html' => true, //will take care of html
-				));
-		}
-
-		echo $this->Html->div('items', $content);
-
-		//paginator
-		if(isset($this->Paginator))
-		{
-			echo $this->Html->div('paging', $this->element('paging', array('search' => $current_searchterms)));
-		}
-
-	echo $this->Html->tag('/div')."\n"; //div.input
-echo $this->Html->tag('/div')."\n"; //div.panel
-
-
-echo $this->Html->div('hide', $this->Form->submit( __('Go', true), array('class' => 'btnEnter')));
-echo $this->Form->end();
-
+');
 ?>

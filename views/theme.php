@@ -31,7 +31,15 @@
  * @package       cake
  * @subpackage    cake.cake.libs.view
  */
-class ThemeView extends View {
+class ThemeView extends View
+{
+	public $title;
+
+	var $admin = false;
+
+	var $debugMode = false;
+
+	public $_crumbs = array();
 	
 /**
  * Constructor for ThemeView sets $this->theme.
@@ -40,7 +48,54 @@ class ThemeView extends View {
  */
 	function __construct(&$controller, $register = true) {
 		parent::__construct($controller, $register);
-		$this->theme =& $controller->theme;
+		$this->admin = (isset($this->params['admin']) && $this->params['admin'])
+			? true
+			: false;
+		$this->title = $this->name;
+		$this->theme = ($this->admin)
+			? Configure::read('Admin.theme')
+			: $controller->theme;
+	}
+
+/**
+ * Adds a link to the breadcrumbs array.
+ *
+ * @param string $name Text for link
+ * @param string $link URL for link (if empty it won't be a link)
+ * @param mixed $options Link attributes e.g. array('id'=>'selected')
+ * @return void
+ * @see HtmlHelper::link() for details on $options that can be used.
+ * @access public
+ */
+	function addCrumb($name, $link = null, $options = null) {
+		$this->_crumbs[] = array($name, $link, $options);
+	}
+
+/**
+ * Returns the breadcrumb trail as an unordered list of links.
+ *
+ * @param string $startText This will be the first crumb, if false it defaults to first crumb in array
+ * @return string Composed bread crumbs
+ * @access public
+ */
+	function getCrumbs($startText = false) {
+		if (!empty($this->_crumbs)) {
+			$out = array();
+			if ($startText) {
+				$out[] = $this->Html->link($startText, '/');
+			}
+
+			foreach ($this->_crumbs as $crumb) {
+				if (!empty($crumb[1])) {
+					$out[] = $this->Html->link($crumb[0], $crumb[1], $crumb[2]);
+				} else {
+					$out[] = $crumb[0];
+				}
+			}
+			return $out;
+		} else {
+			return null;
+		}
 	}
 
 
@@ -69,12 +124,12 @@ class ThemeView extends View {
  */
 	function element($name, $params = array(), $loadHelpers = false) {
 		if(!isset($params['plugin'])) $params['plugin'] = 'flour'; //set plugin to flour, if nothing was given
-		if(!Configure::read())
-		{
-			return parent::element($name, $params, $loadHelpers);
-		}
 		$output = parent::element($name, $params, $loadHelpers);
-		return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";
+		if(Configure::read() && $this->debugMode)
+		{
+			return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";
+		}
+		return $output;
 	}
 
 	//TODO: use for something useful

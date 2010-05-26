@@ -1,10 +1,12 @@
 <?php
 $nav = array();
-if(Configure::read('Env.installed')) $user = Authsome::get();
+$user = Authsome::get();
 
 if(!empty($user))
 {
 	$nav[] = $this->Html->tag('span', String::insert( __('hello :name', true), $user['User']));
+
+	$nav[] = $this->Html->link( __('home', true), '/');
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'settings', 'admin' => false);
 	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
@@ -15,6 +17,10 @@ if(!empty($user))
 	$nav[] = $this->Html->link( __('logout', true), $link, array('class' => $active));
 
 } else {
+
+	$link = '/';
+	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
+	$nav[] = $this->Html->link( __('home', true), $link, array('class' => $active));
 
 	$link = array('plugin' => 'flour', 'controller' => 'users', 'action' => 'login', 'admin' => false);
 	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';

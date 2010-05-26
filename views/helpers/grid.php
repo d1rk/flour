@@ -69,7 +69,7 @@ class GridHelper extends AppHelper
 	function span($span = 24, $content = null, $options = array())
 	{
 		$this->calculate($span);
-		if(is_bool($content) )
+		if(is_bool($content) || $this->last)
 		{
 			$class = "span-$span last";
 			$content = null;
