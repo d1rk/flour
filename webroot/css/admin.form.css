@@ -447,39 +447,44 @@ div.expl span { display: block; width: 14px; height: 14px; float: left; margin-r
 /* PAGING */
 
 div.paginator {
+    padding-top:0.5em;
+    }
+
+div.paginator .btnbar {
 	font-size: 100%;
+	line-height:18px;
 	font-weight: normal;
-	padding: 1px;
-	}
-
-	div.paginator span {
-		margin: 0 2px;
-	}
-
-	div.paginator span.current {
-		color: #777;
-		margin: 0 2px;
 	}
 	
-	div.paginator img {
-		position: relative;
-		top: 1px;
-		vertical-align:top;
+	div.paginator div.btnbar ul li {
+	    display:inline;
+	    margin:0;
+	    padding:0;
 	}
-
-	div.paginator span.img span {
-		padding: 0;
-	}
-
-	div.paginator span.img a {
-		padding: 3px 0 0 0;
-	}
-
-	div.paginator span a {
-		padding: 2px 4px;
-	}
-
 	
+	div.paginator .btnbar li {
+	    height:16px;
+	    width:20px;
+	}
+	
+	div.paginator .btnbar li a,
+	div.paginator .btnbar li.current {
+        padding:0 0.3em;
+	}
+	
+	div.paginator .btnbar li.img a {
+	    padding:0;
+	}
+	
+	div.paginator .btnbar img {
+        vertical-align:top;
+	}
+
+	div.paginator .btnbar li.current {
+		color: #555;
+		font-weight:bold;
+	}
+
 
 
 	ul.btns {
@@ -514,3 +519,9 @@ div.paginator {
 	ul.btns li.active {
 		background: #fff;
 		}
+
+
+.btnbar input.search {
+    width:auto;
+    margin:4px;
+}
