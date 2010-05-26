@@ -21,6 +21,7 @@ class NavHelper extends AppHelper
 	var $pluginUse = false;
 	var $pluginName = 'flour';
 
+	var $debug = false;
 	var $tab = "\t";
 	var $cssfield = 'cssclass';
 	var $itemName = 'name';
@@ -193,8 +194,14 @@ class NavHelper extends AppHelper
 
 	function list_element_links($name, $data, $level = 0)
 	{
-		$tabs = "\n" . str_repeat($this->tab, $level * 2);
-		$li_tabs = $tabs . $this->tab;
+		$tabs = ($this->debug)
+			? "\n" . str_repeat($this->tab, $level * 2)
+			: '';
+
+		$li_tabs = ($this->debug)
+			? $tabs . $this->tab
+			: '';
+
 		$output = '';
 
 		//show title?

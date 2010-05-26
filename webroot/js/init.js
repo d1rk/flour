@@ -13,7 +13,6 @@ $().ready(function(){
 	$("tr th a[href*=direction:asc]").addClass("asc");
 	$("tr th a[href*=direction:desc]").addClass("desc");
 
-	$("div.actions, div.actions div.submit").hover(function(){$(this).addClass("hover");},function(){$(this).removeClass("hover");});
 	$("input, textarea").focus(function(){$(this).addClass("active");});$("input, textarea").blur(function(){$(this).removeClass("active");});
 	$("div.input input, div.input select, div.input textarea").focus(function(){$(this).parent().addClass("active");});$("div.input input, div.input select, div.input textarea").blur(function(){$(this).parent().removeClass("active");});
 
