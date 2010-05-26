@@ -27,6 +27,14 @@ $class = (isset($class))
 	? $class
 	: 'box';
 
+$style = (isset($style))
+	? $style
+	: null;
+
+$options = (isset($options))
+	? $options
+	: array('style' => $style);
+
 $content = (isset($content))
 	? $content
 	: '';
@@ -74,7 +82,7 @@ if (!empty($caption) || !empty($btnbar) || !empty($filters))
 	echo $this->Html->tag('/div'); //div.caption
 }
 
-echo $this->Html->div($class);
+echo $this->Html->div($class, null, $options);
 
 	echo (!empty($label))
 		? $this->Html->tag('label', $label)
