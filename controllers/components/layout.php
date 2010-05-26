@@ -50,10 +50,12 @@ class LayoutComponent extends Object
 
 	function setup()
 	{
-		Configure::write('Admin.theme', 'default');
+		$admin_theme = Configure::read('Admin.theme');
+		if(empty($admin_theme)) {
+			Configure::write('Admin.theme', 'default');
+		}
 		$this->__controller->view = $this->view;
 		$this->__controller->theme = Configure::read('App.theme');
-
 
 		if (!empty($this->__controller->params['prefix']) && in_array($this->__controller->params['prefix'], Configure::read('Routing.prefixes')))
 		{

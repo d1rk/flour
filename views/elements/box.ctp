@@ -7,6 +7,14 @@ $btnbar = (isset($btnbar))
 	? $btnbar
 	: '';
 
+$filters = (isset($filters))
+	? $filters
+	: '';
+
+$actions = (isset($actions))
+	? $actions
+	: '';
+
 $description = (isset($description))
 	? $description
 	: '';
@@ -27,7 +35,7 @@ $footer = (isset($footer))
 	? $footer
 	: '';
 
-if (!empty($caption) || !empty($btnbar))
+if (!empty($caption) || !empty($btnbar) || !empty($filters))
 {
 	echo $this->Html->div('caption');
 
@@ -47,6 +55,22 @@ if (!empty($caption) || !empty($btnbar))
 			? $this->Html->nestedList($caption)
 			: null;
 
+		echo (!empty($actions) && is_string($actions))
+			? $this->Html->div('actions', $actions)
+			: null;
+
+		echo (!empty($actions) && is_array($actions))
+			? $this->Html->div('actions', $this->Html->nestedList($actions))
+			: null;
+
+		echo (!empty($filters) && is_string($filters))
+			? $this->Html->div('filter', $filters)
+			: null;
+
+		echo (!empty($filters) && is_array($filters))
+			? $this->Html->div('filter', $this->Html->nestedList($filters))
+			: null;
+
 	echo $this->Html->tag('/div'); //div.caption
 }
 
@@ -60,8 +84,12 @@ echo $this->Html->div($class);
 		? $this->Html->para('description', $description)
 		: null;
 
-	echo (!empty($content))
+	echo (!empty($content) && is_string($content))
 		? $content
+		: null;
+
+	echo (!empty($content) && is_array($content))
+		? implode($content)
 		: null;
 
 	echo (!empty($footer))
