@@ -178,7 +178,7 @@ if(!empty($search))
 
 	//paginator
 	$footer = (isset($this->Paginator))
-		? $this->Html->div('footer', $this->element('paging', array('search' => $current_searchterms)))
+		? $this->element('paging', array('search' => $current_searchterms))
 		: null;
 
 	$btnbar_content[] = $btnbar;
