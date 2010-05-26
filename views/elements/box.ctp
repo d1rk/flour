@@ -84,8 +84,12 @@ echo $this->Html->div($class);
 		? $this->Html->para('description', $description)
 		: null;
 
-	echo (!empty($content))
+	echo (!empty($content) && is_string($content))
 		? $content
+		: null;
+
+	echo (!empty($content) && is_array($content))
+		? implode($content)
 		: null;
 
 	echo (!empty($footer))

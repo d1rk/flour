@@ -58,8 +58,7 @@ class FlashComponent extends Object
 		// Halt and put JSON if request was AJAX. 
 		if ($this->RequestHandler->isAjax() && $this->filterAjax) {
 			$this->RequestHandler->respondAs('json');
-			echo "// FLASH MESSAGE ".time()."\n";
-			die('{"message":"'.$message.'", "type":"'.$key.'", "params":"'.json_encode($params).'"}');
+			die('{"message":"'.$message.'", "type":"'.$element.'", "params":"'.json_encode($params).'", "time":"'.time().'"}');
 		}
 		$this->Controller->Session->setFlash($message, $element, $params, $key);
 
