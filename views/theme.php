@@ -134,6 +134,10 @@ class ThemeView extends View
 
 	//TODO: use for something useful
 	function _render($___viewFn, $___dataForView, $loadHelpers = true, $cached = false) {
+		if(Configure::read() && $this->viewPath == 'errors')
+		{
+			$this->layout = 'error';
+		}
 		return parent::_render($___viewFn, $___dataForView, $loadHelpers, $cached);
 	}
 
