@@ -1,40 +1,17 @@
 <?php
-class Page extends CmsAppModel
+class Page extends AppModel
 {
+	var $tablePrefix = 'flour_';
 	var $useTable = 'nodes';
 
 	var $actsAs = array(
 		'Tree',
-		'Cms.Flexible' => array('with' => 'NodeField', 'foreignKey' => 'node_id'),
+		'Flour.Flexible' => array('with' => 'NodeField', 'foreignKey' => 'node_id'),
 	);
 	
-	var $belongsTo = array(
-		'Site' => array(
-			'className' => 'Cms.Site',
-			'foreignKey' => 'parent_id',
-			'conditions' => array('Page.type' => 'site'),
-			'fields' => '',
-			'order' => ''
-			),
-		'Creator' => array(
-			'className' => 'User',
-			'foreignKey' => 'created_by',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-			),
-		'Editor' => array(
-			'className' => 'User',
-			'foreignKey' => 'modified_by',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-			),
-	);
-
 	var $hasMany = array(
 		'NodeField' => array(
-			'className' => 'NodeField',
+			'className' => 'Flour.NodeField',
 			'foreignKey' => 'node_id',
 			)
 	);
@@ -54,6 +31,7 @@ class Page extends CmsAppModel
 		),
 	);
 
+/*
 	//we need to re-cache all sites, that this page belongs to
 	function afterSave()
 	{
@@ -65,6 +43,6 @@ class Page extends CmsAppModel
 			$this->Site->_cache($hash); //rebuild site-cache
 		}
 	}
-
+*/
 }
 ?>

@@ -102,7 +102,7 @@ CREATE TABLE IF NOT EXISTS `flour_nodes` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-CREATE TABLE IF NOT EXISTS `flour_nodes_fields` (
+CREATE TABLE IF NOT EXISTS `flour_node_fields` (
   `id` char(36) NOT NULL,
   `node_id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,

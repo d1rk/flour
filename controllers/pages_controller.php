@@ -1,5 +1,5 @@
 <?php
-class PagesController extends CmsAppController
+class PagesController extends AppController
 {
 
 /**
@@ -17,7 +17,19 @@ class PagesController extends CmsAppController
  	);
 
 /**
- * PagessController::view()
+ * displays one page by slug or id
+ *
+ * @param string $slug_or_id This is a fullslug or a id of a page
+ * @return NULL
+ * @access public
+ */
+	function index() {
+		$this->data = $this->Page->find('all');
+		debug($this->data);
+	}
+
+
+/**
  * displays one page by slug or id
  *
  * @param string $slug_or_id This is a fullslug or a id of a page
@@ -51,6 +63,31 @@ class PagesController extends CmsAppController
 		$this->render($page['Page']['template'], $page['Page']['layout']);
 	}
 
+/**
+ * PagessController::admin_index()
+ * Lists all pages with given filters
+ *
+ * @param string $searchterm Term to search for (can be multiple terms, with + and -)
+ * @return NULL
+ * @access public
+ */
+	function admin_index()
+	{
+		$conditions = array();
+/*		$conditions = $this->_buildSearchConditions('Page', array(
+				'Page.id',
+				'Page.fullslug',
+				'Page.name',
+				'Page.title',
+				'Page.body',
+				'Page.excerpt',
+				'Page.description',
+				'Creator.username',
+			));
+*/		$this->data = $this->paginate('Page', $conditions);
+		$parents = $this->Page->generatetreelist(array(), '{n}.Page.id', '{n}.Page.name', ' - ');
+		$this->set(compact('parents'));
+	}
 
 /**
  * PagessController::admin_view()
@@ -89,31 +126,6 @@ class PagesController extends CmsAppController
 
 
 /**
- * PagessController::admin_index()
- * Lists all pages with given filters
- *
- * @param string $searchterm Term to search for (can be multiple terms, with + and -)
- * @return NULL
- * @access public
- */
-	function admin_index()
-	{
-		$conditions = $this->_buildSearchConditions('Page', array(
-				'Page.id',
-				'Page.fullslug',
-				'Page.name',
-				'Page.title',
-				'Page.body',
-				'Page.excerpt',
-				'Page.description',
-				'Creator.username',
-			));
-		$items = $this->paginate('Page', $conditions);
-		$parents = $this->Page->generatetreelist(array(), '{n}.Page.id', '{n}.Page.name', ' - ');
-		$this->set(compact('items', 'parents'));
-	}
-
-/**
  * PagessController::admin_add()
  * To add a new page
  *
@@ -129,9 +141,10 @@ class PagesController extends CmsAppController
 			{
 				if($data = $this->Page->save())
 				{
-					$this->Session->setFlash(String::insert( __('Your page <strong>:page</strong> has been saved.', true), array('page' => $this->data['Page']['name'])), 'flash_success');
-					$this->redirect(array('action' => 'index'));
-					//$this->redirect('/'.$data['Page']['fullslug']);
+					$this->Flash->success(
+						__('Your page <strong>:Page.name</strong> has been saved.', true), 
+						array('action' => 'index')
+					);
 				}
 			}
 		}

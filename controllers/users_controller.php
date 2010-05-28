@@ -9,7 +9,6 @@
  * @version $Id$
  * @copyright brünsicke.com GmbH
  **/
-
 class UsersController extends AppController {
 /**
  * The name of this controller. Controller names are plural, named after the model they manipulate.
