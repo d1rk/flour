@@ -13,7 +13,7 @@ $this->addCrumb(
 );
 
 $this->addCrumb(
-	__('edit', true)
+	__('edit', true),
 	array('controller' => 'contents', 'action' => 'edit', $this->data['Content']['id'])
 );
 
