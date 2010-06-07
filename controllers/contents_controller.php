@@ -54,8 +54,8 @@ class ContentsController extends AppController
 	{
 		if(!empty($this->data))
 		{
-			
-			if($this->Content->validates($this->data))
+			$this->Content->create($this->data);
+			if($this->Content->validates())
 			{
 				if($this->Content->save($this->data, false))
 				{

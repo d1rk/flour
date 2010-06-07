@@ -20,16 +20,15 @@ class Content extends AppModel
 	);
 
 	/**
-	 * controls validations on ADD
-	 *
-	 * @var array
+	 * @var array controls validation
 	 * @access private
 	 */
 	var $validate = array(
-		'title' => array(
+		'name' => array(
 			'notEmpty' => array('rule' => 'notEmpty', 'required' => true),
 		),
 		'slug' => array(
+			'isUnique' => array('rule' => 'isUnique'),
 			'notEmpty' => array('rule' => 'notEmpty', 'required' => true),
 		),
 	);
