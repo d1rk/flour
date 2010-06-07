@@ -12,8 +12,11 @@
  *   $this->Flash->success( __('welcome!', true), array('action' => 'dashboard'));
  *   $this->Flash->success( __('welcome :user!', true), array('user' => 'd1rk'), array('action' => 'dashboard'));
  * 
+ * @package flour
  * @author Dirk Brünsicke
- */
+ * @version $Id$
+ * @copyright bruensicke.com GmbH
+ **/
 App::import('Core', array('String', 'Set'));
 class FlashComponent extends Object 
 {

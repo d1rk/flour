@@ -1,13 +1,11 @@
 <?php
 /**
  * SearchesController
- * 
- * [Short Description]
  *
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
- * @copyright bruensicke.com
+ * @copyright bruensicke.com GmbH
  **/
 class SearchesController extends AppController
 {

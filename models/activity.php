@@ -2,10 +2,10 @@
 /**
  * Activity Model
  * 
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
- * @copyright bruensicke.com
+ * @copyright bruensicke.com GmbH
  **/
 class Activity extends AppModel
 {

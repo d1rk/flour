@@ -1,15 +1,16 @@
 <?php
 /**
- * CustomListsController
+ * ContentsController
  * 
- * A Custom List is a set key/value pairs.
+ * Content is an object with unlimited amount of data.
+ * It has a state and several meta-data that controls how and where
+ * it is displayed.
  *
  * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
  * @copyright bruensicke.com GmbH
  **/
-
 class CustomListsController extends AppController
 {
 	var $paginate = array(

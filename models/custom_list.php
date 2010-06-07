@@ -4,10 +4,10 @@
  * 
  * A Container for CustomlistItems
  *
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
- * @copyright bruensicke.com
+ * @copyright bruensicke.com GmbH
  **/
 class CustomList extends AppModel
 {

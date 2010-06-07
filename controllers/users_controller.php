@@ -2,8 +2,6 @@
 /**
  * UsersController
  * 
- * [Short Description]
- *
  * @package default
  * @author Dirk Brünsicke
  * @version $Id$

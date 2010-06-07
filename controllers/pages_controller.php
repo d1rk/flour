@@ -1,4 +1,14 @@
 <?php
+/**
+ * PagesController
+ * 
+ * In reality, this is a node-controller
+ *
+ * @package flour
+ * @author Dirk Brünsicke
+ * @version $Id$
+ * @copyright bruensicke.com GmbH
+ **/
 class PagesController extends AppController
 {
 

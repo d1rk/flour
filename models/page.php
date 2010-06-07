@@ -1,4 +1,12 @@
 <?php
+/**
+ * Page Model
+ * 
+ * @package flour
+ * @author Dirk Brünsicke
+ * @version $Id$
+ * @copyright bruensicke.com GmbH
+ **/
 class Page extends AppModel
 {
 	var $tablePrefix = 'flour_';

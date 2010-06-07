@@ -4,10 +4,10 @@
  * 
  * An Item in a CustomList
  *
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
- * @copyright bruensicke.com
+ * @copyright bruensicke.com GmbH
  **/
 class CustomListItem extends AppModel
 {

@@ -4,7 +4,7 @@
  * 
  * You can use this model or copy it to your app.
  *
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
  * @copyright brünsicke.com GmbH

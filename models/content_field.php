@@ -1,18 +1,15 @@
 <?php
 /**
- * Login_Token Model
+ * ContentField Model
  * 
  * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
  * @copyright brünsicke.com GmbH
  **/
-class LoginToken extends AppModel
+class ContentField extends AppModel
 {
 	var $tablePrefix = 'flour_';
 
-	var $hasOne = array(
-		'User'
-	);
 }
 ?>

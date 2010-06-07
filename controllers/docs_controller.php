@@ -2,14 +2,13 @@
 /**
  * DocsController
  * 
- * Shows Documentation of Flour
+ * Shows Documentation of Flour.
  *
- * @package default
+ * @package flour
  * @author Dirk Brünsicke
  * @version $Id$
- * @copyright bruensicke.com
+ * @copyright bruensicke.com GmbH
  **/
-
 class DocsController extends AppController
 {
 
