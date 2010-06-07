@@ -16,7 +16,7 @@ class Content extends AppModel
 	);
 	
 	var $hasMany = array(
-		'ContentField',
+		'Flour.ContentField',
 	);
 
 	/**
