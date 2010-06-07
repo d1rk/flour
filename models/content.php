@@ -39,7 +39,7 @@ class Content extends AppModel
 		$contain = array();
 		$order = 'created DESC';
 
-		$conditions['Content.status >'] = 1;
+		$conditions['Content.status >='] = 1;
 		$conditions['Content.slug'] = $slug;
 
 		$data = $this->find('first', compact('conditions', 'contain', 'order'));

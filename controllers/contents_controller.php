@@ -90,17 +90,17 @@ class ContentsController extends AppController
 		}
 		if(!empty($this->data))
 		{
-			
-			if($this->Content->validates($this->data))
+			$this->Content->create($this->data);
+			if($this->Content->validates())
 			{
 				if($this->Content->save($this->data, false))
 				{
 					$this->Flash->success(
 						__('Content :Content.name saved.', true),
-						array('action' => 'index')
+						array('action' => 'edit', $this->data['Content']['id'])
 					);
 				} else {
-					return $this->Flash->error(
+					$this->Flash->error(
 						__('Content :Content.name could not be saved.', true)
 					);
 				}

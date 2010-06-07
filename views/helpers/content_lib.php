@@ -38,7 +38,7 @@ class ContentLibHelper extends AppHelper
 	function render($slug, $element = 'contents/template_default', $options = array())
 	{
 		$data = $this->_Content->get($slug);
-		$options['data'] = $data;
+		$options['data'] = $data['Content'];
 		return $this->_View->element($element, $options);
 	}
 
