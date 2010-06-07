@@ -46,7 +46,8 @@ class ThemeView extends View
  *
  * @param Controller $controller
  */
-	function __construct(&$controller, $register = true) {
+	function __construct(&$controller, $register = true)
+	{
 		parent::__construct($controller, $register);
 		$this->admin = (isset($this->params['admin']) && $this->params['admin'])
 			? true
