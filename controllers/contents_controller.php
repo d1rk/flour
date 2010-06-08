@@ -81,7 +81,7 @@ class ContentsController extends AppController
 					$id = $this->Content->getInsertId();
 					$this->Flash->success(
 						__('Content :Content.name saved.', true),
-						array('action' => 'view', $id)
+						array('action' => 'edit', $id)
 					);
 				} else {
 					return $this->Flash->error(
