@@ -23,7 +23,26 @@ class ContentsController extends AppController
  */
 	function admin_index()
 	{
+		$search = (isset($this->params['named']['search']))
+			? $this->params['named']['search']
+			: '';
+			
 		$conditions = array();
+		
+		if(!empty($search)) {
+			$conditions['OR'] = array(
+				'Content.id =' => $search,
+				'Content.name LIKE' => '%'.$search.'%',
+				'Content.title LIKE' => '%'.$search.'%',
+				'Content.body LIKE' => '%'.$search.'%',
+				'Content.slug LIKE' => '%'.$search.'%',
+			);
+		}
+
+		$contain = array();
+
+		$this->set('search', $search);
+		
 		$this->data = $this->paginate('Content', $conditions);
 	}
 

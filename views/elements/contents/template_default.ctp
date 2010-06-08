@@ -14,6 +14,6 @@ $body = (isset($body))
 	: null;
 
 if(!empty($title)) echo $this->Html->tag('h3', $title);
-if(!empty($body)) echo $this->Html->div('', $body);
+if(!empty($body)) echo $this->Html->div('content', $body);
 
 ?>
