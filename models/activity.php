@@ -66,5 +66,15 @@ class Activity extends AppModel
 		return String::insert($this->types[$type], Set::flatten($data));
 	}
 
+	//get latest activities
+	function get($limit = 25, $options = array())
+	{
+		$defaults = array(
+			'order' => 'Activity.created DESC',
+		);
+		$options = array_merge($options, $defaults);
+		$options['limit'] = $limit;
+		return $this->find('all', $options);
+	}
 }
 ?>
