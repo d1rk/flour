@@ -25,7 +25,7 @@ $label = (isset($label))
 
 $class = (isset($class))
 	? $class
-	: 'box';
+	: 'box clearfix';
 
 $style = (isset($style))
 	? $style

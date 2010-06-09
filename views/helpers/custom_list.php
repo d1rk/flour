@@ -10,14 +10,44 @@ class CustomListHelper extends AppHelper
 		if(is_string($data)) {
 			$data = $this->get($data, $options);
 		}
+		
 		$output = array();
 		
-		foreach($data as $key => $val) {
-			$output[] = $this->Html->tag('dt', $key);
-			$output[] = $this->Html->tag('dd', $val);
+		if(is_bool($options) && $options) {
+			foreach($data as $term => $value) {
+				$def = is_array($value) 
+					? $value[0] 
+					: $value;
+				$def_opt = is_array($value)
+					? $value[1]
+					: array();
+
+				$output[] = $this->Html->tag('dt', $term);
+				$output[] = $this->Html->tag('dd', $def, $def_opt);
+			}
+			$options = array();
+		} else {
+			foreach($data as $values) {
+				$term = is_array($values[0])
+					? $values[0][0]
+					: $values[0];
+				$term_opt = is_array($values[0]) 
+					? $values[0][1]
+					: array();
+				
+				$def = is_array($values[1])
+					? $values[1][0]
+					: $values[1];
+				$def_opt = (is_array($values[1]) && count($values[1]) > 1)
+					? $values[1][1]
+					: array();
+				
+				$output[] = $this->Html->tag('dt', $term, $term_opt);
+				$output[] = $this->Html->tag('dd', $def, $def_opt);
+			}
 		}
 		
-		$output = $this->Html->tag('dl', implode($output));
+		$output = $this->Html->tag('dl', implode($output), $options);
 		
 		return $output;
 	}
