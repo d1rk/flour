@@ -47,6 +47,10 @@ class CustomListHelper extends AppHelper
 			}
 		}
 		
+		isset($options['class'])
+			? $options['class'] .= ' clearfix'
+			: $options['class'] = 'clearfix';
+		
 		$output = $this->Html->tag('dl', implode($output), $options);
 		
 		return $output;
