@@ -86,7 +86,7 @@ class AuthsomeComponent extends Object{
 
 		Configure::write($this->settings['configureKey'], $user);
 		$this->Session->write($this->settings['sessionKey'], $user);
-		if(!empty($user)) {
+		if(!empty($user) && isset($userModel->Activity)) {
 			$userModel->Activity->write('user_loggedin', $user);
 		}
 		return $user;
@@ -95,7 +95,9 @@ class AuthsomeComponent extends Object{
 	public function logout() {
 		$userModel = $this->__getUserModel();
 		$user = Authsome::get();
-		$userModel->Activity->write('user_loggedout', $user);
+		if(isset($userModel->Activity)) {
+			$userModel->Activity->write('user_loggedout', $user);
+		}
 		Configure::write($this->settings['configureKey'], array());
 		$this->Session->write($this->settings['sessionKey'], array());
 		$this->Cookie->write($this->settings['cookieKey'], '');
@@ -113,7 +115,6 @@ class AuthsomeComponent extends Object{
 
 		$token = $userModel->authsomePersist(Authsome::get(), $duration);
 		$token = $token.':'.$duration;
-
 		return $this->Cookie->write(
 			$this->settings['cookieKey'],
 			$token,
