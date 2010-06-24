@@ -5,8 +5,8 @@ $().ready(function(){
 	//make switches on dropdowns
 	$('select[id*=_switch]').bind('change', function(){ var target = $(this).attr('id').split('_switch').join(''); if(this.value == ''){ $('div.'+target).slideUp('fast'); } else { $('div.'+target).slideDown('fast'); } } );
 
-	//tipsy on all elements with title attribut set
-	$('*[title]').tipsy();
+	//tipsy on all elements with title attribut set and tipsy class
+	$('*[title].tipsy').tipsy();
 
 	$("tr, div.items div.item").hover(function(){$(this).addClass("hover");},function(){$(this).removeClass("hover");});
 	$("tr, div.items div.item").click(function(){$(this).toggleClass("active");});
