@@ -63,6 +63,10 @@ $template = (isset($template))
 	? $template
 	: '{{rows}}';
 
+$row_options = (isset($row_options))
+	? $row_options
+	: array('template' => 'default');
+
 
 /* BEGIN OF RENDERING */
 $box_content = $btnbar_content = array();
@@ -147,15 +151,32 @@ if(!empty($search))
 	{
 		$rows = array();
 		$i = 0;
-		
+
 		foreach($data as $ind => $row)
 		{
-			$row = (isset($prefix)) ? array($prefix => $row) : $row;
-			$rows[] = $this->element($element, array('row' => $row, 'i' => $i++, 'even' => ($i % 2) ? 'even' : 'odd'));
+			$row = (isset($prefix))
+				? array($prefix => $row)
+				: $row;
+
+			$rows[] = $this->element($element,
+				array_merge(
+					$row_options, 
+					array(
+						'row' => $row,
+						'i' => $i++,
+						'even' => ($i % 2)
+							? 'even'
+							: 'odd'
+					)
+				)
+			);
 		}
 
 		//insertion of item-template in main-template
-		$connector = (Configure::read()) ? "\n" : '';
+		$connector = (Configure::read())
+			? "\n"
+			: '';
+
 		$content = $header.str_replace('{{rows}}', implode($connector, $rows), $template).$footer;
 
 	} else {
@@ -171,7 +192,8 @@ if(!empty($search))
 			array(
 				'format' => '<span class="highlight">\1</span>', //format of replace
 				'html' => true, //will take care of html
-			));
+			)
+		);
 	}
 
 	$box_content[] = $this->Html->div('items', $content);
@@ -210,6 +232,5 @@ $url = Router::url(array('controller' => $this->params['controller'], 'action' =
 echo $this->Html->scriptBlock('
 	$("tr, div.items div.item").dblclick(function(){ var id = $(this).attr("rel"); document.location = "'.$url.'/" + id; });
 	$("div.actions").hide();
-	
 ');
 ?>
