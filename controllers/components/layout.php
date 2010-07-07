@@ -61,6 +61,11 @@ class LayoutComponent extends Object
 		{
 			$this->__controller->layout = $this->__controller->params['prefix']; //'admin'; //set admin-layout for admin-routes.
 		}
+
+		//webservice view
+		if (in_array($this->__controller->RequestHandler->ext, array('json', 'xml'))) {
+			$this->__controller->view = 'Flour.Webservice';
+		}
 	}
 
 	function startup()
