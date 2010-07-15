@@ -87,7 +87,7 @@ class WebserviceView extends Object
 			header("Last-Modified: " . gmdate('D, d M Y H:i:s') . ' GMT');
 			header('Content-type: application/json');
 
-			header("X-JSON: " . $this->object($this->viewVars));
+			// header("X-JSON: " . $this->object($this->viewVars));
 
 			return $this->object($this->viewVars);
 		}
