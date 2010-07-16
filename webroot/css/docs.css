@@ -21,6 +21,17 @@ a:active {
 	background: url('../img/docs/nav.gif');
 }
 
+#content {
+	float:none;
+	background-color:#fff;
+	margin:0 auto;
+}
+
+	#content .box {
+		background-color:transparent;
+	}
+
+
 /* first menu level */
 
 #nav ul {
@@ -31,6 +42,11 @@ a:active {
 	list-style-type:none;
 	margin:0;
 }
+
+	#nav ul li {
+		position:relative; /* for submenu positioning */
+		white-space:nowrap;
+	}
 
 	#nav ul li,
 	#nav .nav_pre,
@@ -91,12 +107,12 @@ a:active {
 		height:auto;
 		left:0;
 		display:none;
-		background-color:#fff;
 	}
 	
 	#nav ul ul li {
 		height:32px;
 		float:none;
+		background-color:#fff;
 		border-left:1px solid #888;
 		border-right:1px solid #888;
 		border-bottom:1px solid #ccc;
@@ -125,12 +141,11 @@ a:active {
 	}
 	
 	#nav ul ul li:hover {
-		background:#ccc;
+		background:#eee;
 	}
 	
 	#nav ul ul li:hover a {
-		color:#555;
-		background-image:none;
+		color:#555 ! important;
 	}
 
 

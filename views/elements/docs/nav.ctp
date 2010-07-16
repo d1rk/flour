@@ -40,7 +40,7 @@ $nav = array();
 	$active = (stristr($this->here, Router::url($link))) ? 'active' : '';
 	$nav_test1 =
 		  $this->Html->div($active)
-		. $this->Html->link( __('Test1 long text', true), $link, array('class' => $active))
+		. $this->Html->link( __('Test1 very long text', true), $link, array('class' => $active))
 		. $this->Html->tag('/div');
 
 	/* Test 2 */
@@ -64,7 +64,9 @@ $nav = array();
 			$nav_test2,
 			$nav_test1,
 		),
-		$nav_examples,
+		$nav_examples => array(
+			$nav_test2,
+		),
 		$nav_api,
 	);
 

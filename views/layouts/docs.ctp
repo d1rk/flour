@@ -26,7 +26,7 @@
 		<div id="nav">
 			<?php echo $this->element('docs/nav'); ?>
 		</div>
-		<div id="content">
+		<div id="content" class="span-24">
 			<?php
 			echo $this->Session->flash();
 			echo $content_for_layout;
