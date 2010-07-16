@@ -16,10 +16,15 @@ body {
 	background: url('../img/docs/nav.gif');
 }
 
+/* first menu level */
+
 #nav ul {
 	float: left;
 	height: 42px;
 	font-size: 14px;
+	position:relative;
+	list-style-type:none;
+	margin:0;
 }
 
 	#nav ul li,
@@ -29,6 +34,7 @@ body {
 		float: left;
 		height: 42px;
 	}
+	
 
 	#nav .nav_pre,
 	#nav .nav_post {
@@ -66,10 +72,64 @@ body {
 		color:#333;
 	}
 
-		#nav ul li a.active,
-		#nav ul li a:hover {
-			background: url('../img/docs/nav-active.gif') repeat-x 0% -42px;
-			color:#fff;
-		}
+	#nav ul li a.active,
+	#nav ul li:hover a {
+		background: url('../img/docs/nav-active.gif') repeat-x 0% -42px;
+		color:#fff;
+	}
+	
+	/* second menu level */
+	
+	#nav ul ul {
+		position:absolute;
+		top:42px;
+		height:auto;
+		left:0;
+		display:none;
+		background-color:#fff;
+	}
+	
+	#nav ul ul li {
+		height:35px;
+		float:none;
+		border-left:1px solid #888;
+		border-right:1px solid #888;
+		border-bottom:1px solid #ccc;
+	}
+	
+	#nav ul ul li.last {
+		border-bottom:1px solid #888;
+		-moz-border-radius-bottomleft: 5px;
+		-webkit-border-bottom-left-radius: 5px;
+		-moz-border-radius-bottomright: 5px;
+		-webkit-border-bottom-right-radius: 5px;
+	}
+	
+	#nav ul ul li a {
+		display:block;
+		padding: 0 20px 0 10px;
+		height:35px;
+		line-height:35px;
+		font-size:12px;
+		color:#888;
+	}
+	
+	#nav li:hover ul {
+		display:block;
+	}
+	
+	#nav ul ul li:hover {
+		background:#ccc;
+	}
+	
+	#nav ul li:hover ul a {
+		background-image:none;
+		color:#888;
+	}
+	
+	#nav ul ul li:hover a {
+		color:#555;
+		background-image:none;
+	}
 
 
