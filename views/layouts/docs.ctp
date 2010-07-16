@@ -12,6 +12,7 @@
 	));
 	echo $this->Html->script(array(
 		'/flour/js/jquery/jquery',
+		'/flour/js/docs'
 	));
 
 	echo $scripts_for_layout;

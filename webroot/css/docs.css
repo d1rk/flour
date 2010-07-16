@@ -1,12 +1,75 @@
 body {
 	font-family: arial, helvetica, sans-serif;
+	color:#333;
 }
 
-div#header { background: url('../img/docs/header.gif'); }
-div#nav { background: url('../img/docs/nav.gif'); }
+#header {
+	height:60px;
+	background: url('../img/docs/header.gif');
+}
 
-#nav ul { float: left; height: 42px; font-size: 14px; }
-#nav ul li { display: block; float: left; height: 42px; }
-#nav ul li a { display: block; float: left; height: 42px; line-height: 42px; padding: 0 10px 0 0; text-decoration: none; }
-#nav ul li a.active { background: url('../img/docs/nav-active.gif'); }
+	#header #logo {
+		margin-top:15px;
+	}
+
+#nav {
+	background: url('../img/docs/nav.gif');
+}
+
+#nav ul {
+	float: left;
+	height: 42px;
+	font-size: 14px;
+}
+
+	#nav ul li,
+	#nav .nav_pre,
+	#nav .nav_post {
+		display: block;
+		float: left;
+		height: 42px;
+	}
+
+	#nav .nav_pre,
+	#nav .nav_post {
+		width:2px;
+	}
+	
+	#nav li .nav_pre {
+		background: url('../img/docs/nav-bg.gif') no-repeat 0% 0%;
+	}
+	#nav li .nav_post {
+		background: url('../img/docs/nav-bg.gif') no-repeat 0% 100%;
+	}
+	
+	#nav li.last .nav_post {
+		background: url('../img/docs/nav-bg.gif') no-repeat 0% 0%;
+	}
+	
+	#nav li .active .nav_pre,
+	#nav li:hover .nav_pre {
+		background: url('../img/docs/nav-active.gif') no-repeat 0% 0%;
+	}
+	
+	#nav li .active .nav_post,
+	#nav li:hover .nav_post {
+		background: url('../img/docs/nav-active.gif') no-repeat 0% 100%;
+	}
+	
+	#nav ul li a {
+		display: block;
+		float: left;
+		height: 42px;
+		line-height: 42px;
+		padding: 0 10px 0 10px;
+		text-decoration: none;
+		color:#333;
+	}
+
+		#nav ul li a.active,
+		#nav ul li a:hover {
+			background: url('../img/docs/nav-active.gif') repeat-x 0% -42px;
+			color:#fff;
+		}
+
 
