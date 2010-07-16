@@ -24,7 +24,30 @@ class DocsController extends AppController
 
 	}
 	
+/**
+ * Shows Examples on how to use different parts of flour.
+ *
+ * @access public
+ */
+	function examples()
+	{
+
+	}
 	
+/**
+ * Lists API Documentation of flour.
+ *
+ * @access public
+ */
+	function api()
+	{
+
+	}
+	
+	function beforeFilter()
+	{
+		$this->layout = 'docs';
+	}
 
 }
 ?>

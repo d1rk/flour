@@ -1,0 +1,12 @@
+body {
+	font-family: arial, helvetica, sans-serif;
+}
+
+div#header { background: url('../img/docs/header.gif'); }
+div#nav { background: url('../img/docs/nav.gif'); }
+
+#nav ul { float: left; height: 42px; font-size: 14px; }
+#nav ul li { display: block; float: left; height: 42px; }
+#nav ul li a { display: block; float: left; height: 42px; line-height: 42px; padding: 0 10px 0 0; text-decoration: none; }
+#nav ul li a.active { background: url('../img/docs/nav-active.gif'); }
+

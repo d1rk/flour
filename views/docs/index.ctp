@@ -1,7 +1,6 @@
 <?php
 
-$this->title = __('Documentaton', true);
-
+$this->title = __('Documentation', true);
 $this->description = 'Docs are here';
 
 echo $this->element('content_start');

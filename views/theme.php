@@ -35,7 +35,11 @@ class ThemeView extends View
 {
 	public $title;
 
+	var $description = null;
+
 	var $admin = false;
+
+	var $slots = array();
 
 	var $debugMode = false;
 
@@ -125,7 +129,21 @@ class ThemeView extends View
  */
 	function element($name, $params = array(), $loadHelpers = false) {
 		if(!isset($params['plugin'])) $params['plugin'] = 'flour'; //set plugin to flour, if nothing was given
+
+		if(isset($params['target']))
+		{
+			$target = $params['target'];
+			unset($params['target']);
+		}
+
 		$output = parent::element($name, $params, $loadHelpers);
+
+		if(isset($target))
+		{
+			//TODO: check target
+			$this->slots[$target] = $output;
+		}
+
 		if(Configure::read() && $this->debugMode)
 		{
 			return "\r\r\r<!-- ELEMENT[$name]-->\r\t<div class=\"element\" title=\"$name\">$output</div>\r\r\r";

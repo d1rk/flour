@@ -5,7 +5,7 @@ $this->title = (isset($title))
 
 $this->description = (isset($description))
 	? $description
-	: null;
+	: $this->description;
 
 $this->name = $this->title;
 
