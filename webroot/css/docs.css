@@ -3,6 +3,11 @@ body {
 	color:#333;
 }
 
+a:focus,
+a:active {
+	outline:none;
+}
+
 #header {
 	height:60px;
 	background: url('../img/docs/header.gif');
@@ -90,7 +95,7 @@ body {
 	}
 	
 	#nav ul ul li {
-		height:35px;
+		height:32px;
 		float:none;
 		border-left:1px solid #888;
 		border-right:1px solid #888;
@@ -108,10 +113,11 @@ body {
 	#nav ul ul li a {
 		display:block;
 		padding: 0 20px 0 10px;
-		height:35px;
-		line-height:35px;
+		height:32px;
+		line-height:32px;
 		font-size:12px;
-		color:#888;
+		color:#888 ! important;
+		background-image:none ! important;
 	}
 	
 	#nav li:hover ul {
@@ -120,11 +126,6 @@ body {
 	
 	#nav ul ul li:hover {
 		background:#ccc;
-	}
-	
-	#nav ul li:hover ul a {
-		background-image:none;
-		color:#888;
 	}
 	
 	#nav ul ul li:hover a {
