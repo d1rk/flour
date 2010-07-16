@@ -1,11 +1,19 @@
 body {
 	font-family: arial, helvetica, sans-serif;
 	color:#333;
+	background-color:#f5f5f5;
+	overflow-y:scroll; /* always show, to prevent content "jumping" on pages with different length */
 }
 
+a,
 a:focus,
 a:active {
 	outline:none;
+	text-decoration:none;
+}
+
+#container {
+	background-color:#fff;
 }
 
 #header {
@@ -31,7 +39,68 @@ a:active {
 		background-color:transparent;
 	}
 
+#footer {
+	color:#888;
+	background:#f5f5f5 url('../img/docs/footer-bg.gif') repeat-x;
+}
 
+	#footer .container {
+		width:953px; /* fix for last empty column with divider image */
+	}
+
+	#footer h3 {
+		color:#555;
+	}
+	
+	#footer a {
+		color:#888;
+	}
+
+	#footer a:hover {
+		text-decoration:underline;
+	}
+	
+	#footer .column {
+		float:left;
+		margin-top:2px	;
+		height:200px;
+		background:url('../img/docs/footer-divider.gif') repeat-y;
+	}
+
+		#footer .column .inside {
+			padding:20px 10px;
+			line-height:1.5em;
+			font-size:11px;
+		}
+	
+		#footer .column a {
+			display:block;
+		}
+	
+	#footer .column-empty {
+		width:3px;
+	}
+
+#breadcrumb {
+	color:#888;
+	border-top:1px solid #e5e5e5;
+}
+
+	#breadcrumb .inside {
+		padding:1em 10px;
+		font-size:11px;
+	}
+	
+#copyright {
+	color:#888;
+	background:#f5f5f5 url('../img/docs/footer-bg.gif') repeat-x 0% -1px;
+}
+
+	#copyright .inside {
+		padding:1em 0;
+		font-size:11px;
+	}
+	
 /* first menu level */
 
 #nav ul {

@@ -32,6 +32,9 @@
 			echo $content_for_layout;
 			?>
 		</div>
+		<div id="breadcrumb">
+			<?php echo $this->element('docs/breadcrumb'); ?>
+		</div>
 		<div id="footer">
 			<?php echo $this->element('docs/footer'); ?>
 		</div>
