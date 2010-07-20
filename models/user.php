@@ -9,10 +9,8 @@
  * @version $Id$
  * @copyright brünsicke.com GmbH
  **/
-class User extends AppModel
+class User extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
-
 	public $hasMany = array(
 		'Flour.LoginToken',
 		'Flour.Activity',

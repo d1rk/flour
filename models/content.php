@@ -7,10 +7,8 @@
  * @version $Id$
  * @copyright bruensicke.com GmbH
  **/
-class Content extends AppModel
+class Content extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
-
 	var $actsAs = array(
 		'Flour.Flexible',
 	);

@@ -7,7 +7,7 @@
  * @version $Id$
  * @copyright bruensicke.com GmbH
  **/
-class Activity extends AppModel
+class Activity extends FlourAppModel
 {
 	var $tablePrefix = 'flour_';
 	var $types = array(

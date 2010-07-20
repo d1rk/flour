@@ -7,9 +7,8 @@
  * @version $Id$
  * @copyright bruensicke.com GmbH
  **/
-class Page extends AppModel
+class Page extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
 	var $useTable = 'nodes';
 
 	var $actsAs = array(

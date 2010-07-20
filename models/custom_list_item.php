@@ -9,10 +9,8 @@
  * @version $Id$
  * @copyright bruensicke.com GmbH
  **/
-class CustomListItem extends AppModel
+class CustomListItem extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
-
 	var $belongsTo = array('CustomList');
 }
 ?>

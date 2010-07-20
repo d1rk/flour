@@ -7,9 +7,8 @@
  * @version $Id$
  * @copyright brünsicke.com GmbH
  **/
-class ContentField extends AppModel
+class ContentField extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
 
 }
 ?>

@@ -7,10 +7,8 @@
  * @version $Id$
  * @copyright brünsicke.com GmbH
  **/
-class LoginToken extends AppModel
+class LoginToken extends FlourAppModel
 {
-	var $tablePrefix = 'flour_';
-
 	var $hasOne = array(
 		'User'
 	);

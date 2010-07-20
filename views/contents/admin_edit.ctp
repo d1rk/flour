@@ -40,9 +40,13 @@ echo $this->element('content_start');
 		echo $this->Html->div('span-14');
 
 			//TODO: use panel-element instead of box (must be created before :)
+			$type = (isset($this->params['named']['type']))
+				? $this->params['named']['type']
+				: 'form_basic';
+
 			echo $this->element('box', array(
 				'caption' => __('Enter Content Details.', true),
-				'content' => $this->element('contents/form_basic'),
+				'content' => $this->element('contents/'.$type), //TODO: make switchable
 				'class' => 'panel',
 			));
 
