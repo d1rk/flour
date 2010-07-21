@@ -72,6 +72,7 @@ class FlourAppModel extends AppModel
 	 *
 	 * @var array
 	 * @access private
+	 * @todo add missing params to fulfill the standard find() signature
 	 */
 	function find($type, $options = array())
 	{
@@ -109,26 +110,40 @@ class FlourAppModel extends AppModel
 		return parent::find($type, $options);
 	}
 	
+	/**
+	 * flour find
+	 *
+	 * @var array
+	 * @access private
+	 * @todo add missing params to fulfill the standard find() signature
+	 */
 	function _setActive(&$options, &$type)
 	{
 		$this->_setValid($options, $type);
 		$options['conditions'] = array_merge(
 			$options['conditions'],
 			array(
-				$this->alias.'.status' => 1,
+				$this->alias.'.status >' => 0,
 			)
 		);
 		$type = (isset($options['conditions'][$this->alias.'.'.$this->primaryKey]))
 			? 'first'
 			: 'all';
 	}
-	
+
+	/**
+	 * undocumented function
+	 *
+	 * @param string $options 
+	 * @param string $type 
+	 * @return void
+	 */
 	function _setCurrent(&$options, &$type) {
 		$this->_setValid($options, $type);
 		$options['conditions'] = array_merge(
 			$options['conditions'],
 			array(
-				$this->alias.'.status' => 1,
+				$this->alias.'.status >' => 0,
 			)
 		);
 		$options['order'] = array_merge(
@@ -140,6 +155,14 @@ class FlourAppModel extends AppModel
 		$type = 'first';
 	}
 	
+	/**
+	 * undocumented function
+	 *
+	 * @param string $options 
+	 * @param string $type 
+	 * @return void
+	 * @access public
+	 */
 	function _setEditions(&$options, &$type) {
 		$slug = null;
 		
