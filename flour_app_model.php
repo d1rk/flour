@@ -178,6 +178,9 @@ class FlourAppModel extends AppModel
 	}
 	
 	function _setValid(&$options, &$type) {
+		if(!$this->hasField('valid_from') || !$this->hasField('valid_to')) {
+			return;
+		}
 		$options['conditions'] = array_merge(
 			$options['conditions'],
 			array(
