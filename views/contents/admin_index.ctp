@@ -17,16 +17,6 @@ $this->Nav->add('Primary', array(
 echo $this->element('content_start');
 	echo $grid->open();
 
-		echo $this->element('widget', array(
-			'type' => 'example',
-			'widget_data' => array(
-				'content' => 'hallo welt huhu.',
-				'template' => 'h3',
-			),
-		));
-
-
-
 		$filters = $actions = array();
 
 		$actions[__('edit', true)] = array('controller' => 'lotteries', 'action' => 'edit', ':id');
