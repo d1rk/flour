@@ -32,6 +32,8 @@ $this->Nav->add('Primary', array(
 	'class' => 'positive',
 ));
 
+$type = $this->data['Widget']['type'];
+
 echo $this->Form->create('Widget', array('action' => $this->action));
 echo $this->Form->hidden('Widget.id');
 echo $this->element('content_start');
@@ -40,14 +42,9 @@ echo $this->element('content_start');
 		echo $this->Html->div('span-14');
 
 			//TODO: use panel-element instead of box (must be created before :)
-			//TODO: reflect type
-			$type = (isset($this->params['named']['type']))
-				? $this->params['named']['type']
-				: 'form_basic';
-
 			echo $this->element('box', array(
 				'caption' => __('Enter Widget Details.', true),
-				'widget' => $this->element('widgets/'.$type), //TODO: make switchable
+				'content' => $this->element('widgets/'.$type, array('template' => 'admin')), //TODO: make switchable
 				'class' => 'panel',
 			));
 
@@ -57,7 +54,7 @@ echo $this->element('content_start');
 			//TODO: use panel-element instead of box (must be created before :)
 			echo $this->element('box', array(
 				'caption' => __('Control Widget', true),
-				'widget' => $this->element('widgets/form'),
+				'content' => $this->element('widgets/form'),
 				'class' => 'panel',
 			));
 
