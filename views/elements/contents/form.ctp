@@ -16,4 +16,6 @@ echo $this->Form->input('Content.name');
 echo $this->Form->input('Content.slug');
 
 echo $this->Form->input('Content.description');
+
+echo $this->Form->input('Content.tags');
 ?>
