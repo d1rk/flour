@@ -1,25 +1,20 @@
 <?php
-$this->title = __('Contents', true);
-$this->description = __('Edit Content details.', true);
+$this->title = __('Widgets', true);
+$this->description = __('Add new Widgets.', true);
 
 $this->addCrumb(
-	__('Contents', true),
-	array('controller' => 'contents', 'action' => 'index')
+	__('Widgets', true),
+	array('controller' => 'widgets', 'action' => 'index')
 );
 
 $this->addCrumb(
-	$this->data['Content']['name'],
-	array('controller' => 'contents', 'action' => 'view', $this->data['Content']['id'])
-);
-
-$this->addCrumb(
-	__('edit', true),
-	array('controller' => 'contents', 'action' => 'edit', $this->data['Content']['id'])
+	__('add', true),
+	array('controller' => 'widgets', 'action' => 'add')
 );
 
 $this->Nav->add('Primary', array(
 	'name' => __('cancel', true),
-	'url' => array('controller' => 'contents', 'action' => 'index'),
+	'url' => array('controller' => 'widgets', 'action' => 'index'),
 	'type' => 'link',
 	'ico' => 'cross',
 	'confirm' => __('Are you sure you want to cancel?', true),
@@ -32,22 +27,23 @@ $this->Nav->add('Primary', array(
 	'class' => 'positive',
 ));
 
-echo $this->Form->create('Content', array('action' => $this->action));
-echo $this->Form->hidden('Content.id');
+//retrieve the widget to be used
+$type = (isset($this->passedArgs['type']))
+	? $this->passedArgs['type']
+	: 'example';
+
+
+echo $this->Form->create('Widget', array('action' => $this->action));
 echo $this->element('content_start');
 	echo $this->Grid->open();
 
 		echo $this->Html->div('span-14');
 
 			//TODO: use panel-element instead of box (must be created before :)
-			//TODO: reflect type
-			$type = (isset($this->params['named']['type']))
-				? $this->params['named']['type']
-				: 'form_basic';
-
+			//TODO: use widgetFactory Form
 			echo $this->element('box', array(
-				'caption' => __('Enter Content Details.', true),
-				'content' => $this->element('contents/'.$type), //TODO: make switchable
+				'caption' => __('Enter Widget Details.', true),
+				'content' => $this->element('widget', array('type' => $type, 'template' => 'admin')),
 				'class' => 'panel',
 			));
 
@@ -56,8 +52,8 @@ echo $this->element('content_start');
 
 			//TODO: use panel-element instead of box (must be created before :)
 			echo $this->element('box', array(
-				'caption' => __('Control Content', true),
-				'content' => $this->element('contents/form'),
+				'caption' => __('Control Widget', true),
+				'content' => $this->element('widgets/form', array('type' => $type)),
 				'class' => 'panel',
 			));
 

@@ -120,6 +120,7 @@ class ThemeView extends View
  *   `time` is used to specify duration of cache.
  *   `key` can be used to create unique cache files.
  * - `plugin` - Load an element from a specific plugin.
+ * - `target` - save output into named slot
  *
  * @param string $name Name of template file in the/app/views/elements/ folder
  * @param array $params Array of data to be made available to the for rendered

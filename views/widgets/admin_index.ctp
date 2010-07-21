@@ -1,31 +1,21 @@
 <?php
-$this->title = __('Contents', true);
-$this->description = __('Show all Contents', true);
+$this->title = __('Widgets', true);
+$this->description = __('Show all Widgets', true);
 
 $this->addCrumb(
-	__('Contents', true),
-	array('controller' => 'contents', 'action' => 'index')
+	__('Widgets', true),
+	array('controller' => 'widgets', 'action' => 'index')
 );
 
 $this->Nav->add('Primary', array(
-	'name' => __('Add Content', true),
-	'url' => array('controller' => 'contents', 'action' => 'add'),
+	'name' => __('Add Widget', true),
+	'url' => array('controller' => 'widgets', 'action' => 'add'),
 	'type' => 'link',
 	'ico' => 'add',
 ));
 
 echo $this->element('content_start');
 	echo $grid->open();
-
-		echo $this->element('widget', array(
-			'type' => 'example',
-			'widget_data' => array(
-				'content' => 'hallo welt huhu.',
-				'template' => 'h3',
-			),
-		));
-
-
 
 		$filters = $actions = array();
 
@@ -34,8 +24,8 @@ echo $this->element('content_start');
 		$actions[__('delete', true)] = array('controller' => 'lotteries', 'action' => 'delete', ':id');
 
 		echo $this->element('table', array(
-			'element' => 'contents/row',
-			'search' => 'Content',
+			'element' => 'widgets/row',
+			'search' => 'Widget',
 			'actions' => $actions,
 			'current_searchterms' => (isset($search)) ? $search : '',
 		));

@@ -162,3 +162,23 @@ CREATE TABLE IF NOT EXISTS `flour_content_fields` (
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+CREATE TABLE IF NOT EXISTS `flour_widgets` (
+  `id` char(36) NOT NULL,
+  `type` varchar(255) NOT NULL default 'content',
+  `status` int(3) default '0',
+  `slug` varchar(255) NOT NULL default '',
+  `name` varchar(255) NOT NULL COMMENT 'internal name',
+  `description` tinytext,
+  `title` varchar(255) NOT NULL,
+  `data` text,
+  `valid_from` datetime default NULL,
+  `valid_to` datetime default NULL,
+  `created` datetime NOT NULL,
+  `created_by` char(36) NOT NULL,
+  `modified` datetime default NULL,
+  `modified_by` char(36) default NULL,
+  `deleted` datetime default NULL,
+  `deleted_by` char(36) default NULL,
+  PRIMARY KEY  (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+

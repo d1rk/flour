@@ -10,4 +10,13 @@ Configure::write('App.keywords', '');
 Configure::write('App.description', '');
 Configure::write('App.breadcrumb', ' &raquo; '); //used as seperator for breadcrumbs
 
+//Widgets
+Configure::write('App.Widget.types', array(
+	'example' => __('Example', true),
+));
+
+//Contents
+Configure::write('App.Content.types', array(
+	'example' => __('Example', true),
+));
 ?>

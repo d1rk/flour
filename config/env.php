@@ -31,4 +31,5 @@ Configure::write('Env.installed', (Configure::read('Env.dbconfig.connected')) ? 
 
 Configure::write('Env.site_hash', md5(Configure::read('Env.hostname').Configure::read('Env.subfolder')));
 
+include_once('init.php');
 ?>

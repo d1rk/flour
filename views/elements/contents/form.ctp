@@ -1,14 +1,14 @@
 <?php
-// echo $this->Form->input('Content.type', array(
-// 	'type' => 'select',
-// 	'options' => Configure::read('App.Content.types'),
-// ));
-
+//retrieve the content_type to be used
+$type = (isset($this->passedArgs['type']))
+	? $this->passedArgs['type']
+	: 'example';
 
 echo $this->Form->input('Content.type', array(
-	'type' => 'text',
+	'type' => 'select',
+	'options' => Configure::read('App.Content.types'),
+	'default' => $type,
 ));
-
 
 echo $this->Form->input('Content.status');
 

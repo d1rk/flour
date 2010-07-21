@@ -1,25 +1,25 @@
 <?php
-$this->title = __('Contents', true);
-$this->description = __('Edit Content details.', true);
+$this->title = __('Widgets', true);
+$this->description = __('Edit Widget details.', true);
 
 $this->addCrumb(
-	__('Contents', true),
-	array('controller' => 'contents', 'action' => 'index')
+	__('Widgets', true),
+	array('controller' => 'widgets', 'action' => 'index')
 );
 
 $this->addCrumb(
-	$this->data['Content']['name'],
-	array('controller' => 'contents', 'action' => 'view', $this->data['Content']['id'])
+	$this->data['Widget']['name'],
+	array('controller' => 'widgets', 'action' => 'view', $this->data['Widget']['id'])
 );
 
 $this->addCrumb(
 	__('edit', true),
-	array('controller' => 'contents', 'action' => 'edit', $this->data['Content']['id'])
+	array('controller' => 'widgets', 'action' => 'edit', $this->data['Widget']['id'])
 );
 
 $this->Nav->add('Primary', array(
 	'name' => __('cancel', true),
-	'url' => array('controller' => 'contents', 'action' => 'index'),
+	'url' => array('controller' => 'widgets', 'action' => 'index'),
 	'type' => 'link',
 	'ico' => 'cross',
 	'confirm' => __('Are you sure you want to cancel?', true),
@@ -32,8 +32,8 @@ $this->Nav->add('Primary', array(
 	'class' => 'positive',
 ));
 
-echo $this->Form->create('Content', array('action' => $this->action));
-echo $this->Form->hidden('Content.id');
+echo $this->Form->create('Widget', array('action' => $this->action));
+echo $this->Form->hidden('Widget.id');
 echo $this->element('content_start');
 	echo $this->Grid->open();
 
@@ -46,8 +46,8 @@ echo $this->element('content_start');
 				: 'form_basic';
 
 			echo $this->element('box', array(
-				'caption' => __('Enter Content Details.', true),
-				'content' => $this->element('contents/'.$type), //TODO: make switchable
+				'caption' => __('Enter Widget Details.', true),
+				'widget' => $this->element('widgets/'.$type), //TODO: make switchable
 				'class' => 'panel',
 			));
 
@@ -56,8 +56,8 @@ echo $this->element('content_start');
 
 			//TODO: use panel-element instead of box (must be created before :)
 			echo $this->element('box', array(
-				'caption' => __('Control Content', true),
-				'content' => $this->element('contents/form'),
+				'caption' => __('Control Widget', true),
+				'widget' => $this->element('widgets/form'),
 				'class' => 'panel',
 			));
 
