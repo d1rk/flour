@@ -4,6 +4,7 @@ CREATE TABLE IF NOT EXISTS `flour_activities` (
   `type` VARCHAR(255) NOT NULL,
   `status` VARCHAR(40) NOT NULL,
   `message` text NOT NULL,
+  `tags` VARCHAR(255) NOT NULL,
   `data` text NOT NULL,
   `created` datetime NOT NULL,
   PRIMARY KEY  (`id`)
@@ -14,6 +15,7 @@ CREATE TABLE IF NOT EXISTS `flour_users` (
   `name` VARCHAR(255) NOT NULL,
   `password` VARCHAR(255) NOT NULL,
   `email` VARCHAR(255) NOT NULL,
+  `tags` VARCHAR(255) NOT NULL,
   `created` DATETIME DEFAULT NULL,
   `modified` DATETIME DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -50,6 +52,7 @@ CREATE TABLE IF NOT EXISTS `flour_custom_lists` (
   `description` tinytext,
   `name` varchar(255) NOT NULL COMMENT 'internal name',
   `title` varchar(255) NOT NULL,
+  `tags` VARCHAR(255) NOT NULL,
   `valid_from` datetime default NULL,
   `valid_to` datetime default NULL,
   `created` datetime NOT NULL,
@@ -134,6 +137,7 @@ CREATE TABLE IF NOT EXISTS `flour_contents` (
   `description` tinytext,
   `title` varchar(255) NOT NULL,
   `body` text,
+  `tags` VARCHAR(255) NOT NULL,
   `valid_from` datetime default NULL,
   `valid_to` datetime default NULL,
   `created` datetime NOT NULL,
