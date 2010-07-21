@@ -11,6 +11,8 @@
  **/
 class User extends FlourAppModel
 {
+	var $actsAs = 'Flour.Taggable';
+
 	public $hasMany = array(
 		'Flour.LoginToken',
 		'Flour.Activity',

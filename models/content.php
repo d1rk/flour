@@ -11,6 +11,7 @@ class Content extends FlourAppModel
 {
 	var $actsAs = array(
 		'Flour.Flexible',
+		'Flour.Taggable',
 	);
 	
 	var $hasMany = array(

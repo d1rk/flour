@@ -11,6 +11,8 @@
  **/
 class CustomList extends FlourAppModel
 {
+	var $actsAs = 'Flour.Taggable';
+
 #	var $hasMany = array('CustomListItem');
 }
 ?>

@@ -9,6 +9,8 @@
  **/
 class Activity extends FlourAppModel
 {
+	var $actsAs = 'Flour.Taggable';
+
 	var $tablePrefix = 'flour_';
 	var $types = array(
 		'user_loggedin' => 'user \':User.name\' logged in via \':User.loginType\'.',
