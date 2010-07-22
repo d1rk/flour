@@ -25,7 +25,6 @@ $footer = (isset($footer))
 	? $footer 
 	: '';
 
-
 echo $header;
 echo $this->element(
 	String::insert(Configure::read('App.Widget.pattern'), array('type' => $type)),

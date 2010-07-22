@@ -18,7 +18,6 @@ class WidgetsController extends AppController
 
 	function admin_get()
 	{
-		
 		if(isset($this->passedArgs['id']))
 		{
 			//find that one
@@ -27,8 +26,9 @@ class WidgetsController extends AppController
 		} elseif(isset($this->passedArgs['type'])) {
 			//build that type
 		}
-		$data = $this->passedArgs;
-		$this->set('widget_data', $data);
+		//TODO: hm?
+		// debug($this->passedArgs);
+		$this->set($this->passedArgs);
 		$this->render('/elements/widget', 'ajax');
 	}
 

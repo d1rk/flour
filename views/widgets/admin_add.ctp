@@ -68,16 +68,12 @@ echo $form->end();
 $().ready(function()
 {
 	$('#WidgetTypeSelect').change(function() {
-		var widgetType = $('#WidgetTypeSelect').attr('value');
+		var widgetType = $(this).attr('value');
 		if(widgetType=='') {
 			$('div.widget_content').html('');
 		} else {
 			$.get(
-				"<?php echo Router::url(array('controller' => 'widgets', 'action' => 'get')); ?>",
-				{
-					type: widgetType,
-					template: 'admin'
-				}, 
+				"<?php echo Router::url(array('controller' => 'widgets', 'action' => 'get')); ?>/type:"+widgetType+"/template:admin",
 				function(data) {
 					$('div.widget_content').html(data);
 				}
