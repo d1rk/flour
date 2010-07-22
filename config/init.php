@@ -15,6 +15,7 @@ Configure::write('App.Widget.pattern', 'widgets/:type_widget');
 Configure::write('App.Widget.types', array(
 	'generic' => __('Generic Model', true),
 	'example' => __('Example', true),
+	'html' => __('Html block', true),
 	'list_shops' => __('Shop list', true),
 ));
 
