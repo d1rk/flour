@@ -1,10 +1,9 @@
 <?php
-$widget_path = 'widgets/:type';
 
 //which widget to use, defaults to 'generic'
 $type = (isset($type))
 	? $type 
-	: 'generic'; //TODO: check on generic element
+	: 'generic';
 
 //which template in the widget to use, defaults to 'default'
 $template = (isset($template))
@@ -26,21 +25,14 @@ $footer = (isset($footer))
 	? $footer 
 	: '';
 
-//prepare widget_data
-$widget_data = array_merge(
-	$widget_data, 
+
+echo $header;
+echo $this->element(
+	String::insert(Configure::read('App.Widget.pattern'), array('type' => $type)),
 	array(
+		'data' => $widget_data,
 		'template' => $template,
 	)
 );
-
-echo $header.$this->element(
-	String::insert(
-		$widget_path, 
-		array(
-			'type' => $type,
-		)
-	),
-	$widget_data
-).$footer;
+echo $footer;
 ?>

@@ -44,7 +44,7 @@ echo $this->element('content_start');
 			//TODO: use panel-element instead of box (must be created before :)
 			echo $this->element('box', array(
 				'caption' => __('Enter Widget Details.', true),
-				'content' => $this->element('widgets/'.$type, array('template' => 'admin')), //TODO: make switchable
+				'content' => $this->element('widget', array('type' => $type, 'template' => 'admin')), //TODO: make switchable
 				'class' => 'panel',
 			));
 
@@ -59,6 +59,20 @@ echo $this->element('content_start');
 			));
 
 		echo $this->Html->tag('/div'); //div.span-10 last
+
+		echo $this->Html->div('span-24');
+
+			echo $this->element('box', array(
+				'caption' => __('Preview Widget', true),
+				'content' => $this->element('widget', array(
+					'type' => $type,
+					'template' => 'default',
+					'widget_data' => $this->data['Widget']['data'],
+				)),
+				'class' => 'panel',
+			));
+		
+		echo $this->Html->tag('/div'); //div.span-24
 
 	echo $this->Grid->close();
 echo $this->element('content_stop');

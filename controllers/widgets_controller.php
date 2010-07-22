@@ -16,6 +16,23 @@ class WidgetsController extends AppController
 		)
 	);
 
+	function admin_get()
+	{
+		
+		if(isset($this->passedArgs['id']))
+		{
+			//find that one
+		} elseif(isset($this->passedArgs['slug'])) {
+			//find that one
+		} elseif(isset($this->passedArgs['type'])) {
+			//build that type
+		}
+		$data = $this->passedArgs;
+		$this->set('widget_data', $data);
+		$this->render('/elements/widget', 'ajax');
+	}
+
+
 /**
  * lists all available lotteries
  *
@@ -109,6 +126,7 @@ class WidgetsController extends AppController
 		}
 		if(!empty($this->data))
 		{
+			debug($this->data);
 			$this->Widget->create($this->data);
 			if($this->Widget->validates())
 			{

@@ -53,6 +53,7 @@ class ThemeView extends View
 	function __construct(&$controller, $register = true)
 	{
 		parent::__construct($controller, $register);
+		$this->_controller = $controller;
 		$this->admin = (isset($this->params['admin']) && $this->params['admin'])
 			? true
 			: false;
@@ -101,6 +102,15 @@ class ThemeView extends View
 		} else {
 			return null;
 		}
+	}
+
+	function widget($type, $template = 'default', $options = array())
+	{
+		return $this->element('widget', array(
+			'type' => $type,
+			'template' => $template,
+			'widget_data' => $options,
+		));
 	}
 
 
@@ -152,12 +162,20 @@ class ThemeView extends View
 		return $output;
 	}
 
-	//TODO: use for something useful
-	function _render($___viewFn, $___dataForView, $loadHelpers = true, $cached = false) {
+	function render($action = null, $layout = null, $file = null)
+	{
 		if(Configure::read() && $this->viewPath == 'errors')
 		{
+			debug($layout);
+			debug($this->_controller);
+			$this->plugin = 'flour';
 			$this->layout = 'error';
 		}
+		return parent::render($action, $layout, $file);
+	}
+
+	//TODO: use for something useful
+	function _render($___viewFn, $___dataForView, $loadHelpers = true, $cached = false) {
 		return parent::_render($___viewFn, $___dataForView, $loadHelpers, $cached);
 	}
 

@@ -11,7 +11,9 @@ Configure::write('App.description', '');
 Configure::write('App.breadcrumb', ' &raquo; '); //used as seperator for breadcrumbs
 
 //Widgets
+Configure::write('App.Widget.pattern', 'widgets/:type_widget');
 Configure::write('App.Widget.types', array(
+	'generic' => __('Generic Model', true),
 	'example' => __('Example', true),
 ));
 

@@ -9,6 +9,14 @@
  **/
 class Widget extends FlourAppModel
 {
-	
+	var $actsAs = array(
+		'Flour.flexible',
+		'Flour.Taggable',
+	);
+
+	var $hasMany = array(
+		'Flour.WidgetField',
+	);
+
 }
 ?>

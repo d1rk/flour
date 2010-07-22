@@ -95,21 +95,6 @@ class FlexibleBehavior extends ModelBehavior
 	}
 
 /**
- * Flattens all $keys
- *
- * @param object $Model
- * @access public
- */
-	function beforeValidate(&$Model)
-	{
-		if(!empty($Model->data))
-		{
-			$Model->data[$Model->name] = Set::flatten($Model->data[$Model->name]);
-		}
-		return true;
-	}
-
-/**
  * Converts all field-values that are arrays into JSON-objects.
  *
  * @param object $Model

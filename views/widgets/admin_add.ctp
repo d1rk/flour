@@ -44,7 +44,7 @@ echo $this->element('content_start');
 			echo $this->element('box', array(
 				'caption' => __('Enter Widget Details.', true),
 				'content' => $this->element('widget', array('type' => $type, 'template' => 'admin')),
-				'class' => 'panel',
+				'class' => 'panel widget_content',
 			));
 
 		echo $this->Html->tag('/div'); //div.span-14
@@ -64,3 +64,25 @@ echo $this->element('content_stop');
 echo $form->end();
 
 ?>
+<script type="text/javascript">
+$().ready(function()
+{
+	$('#WidgetTypeSelect').change(function() {
+		var widgetType = $('#WidgetTypeSelect').attr('value');
+		if(widgetType=='') {
+			$('div.widget_content').html('');
+		} else {
+			$.get(
+				"<?php echo Router::url(array('controller' => 'widgets', 'action' => 'get')); ?>",
+				{
+					type: widgetType,
+					template: 'admin'
+				}, 
+				function(data) {
+					$('div.widget_content').html(data);
+				}
+			);
+		}
+	});
+});
+</script>
