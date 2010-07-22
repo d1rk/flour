@@ -126,7 +126,6 @@ class WidgetsController extends AppController
 		}
 		if(!empty($this->data))
 		{
-			debug($this->data);
 			$this->Widget->create($this->data);
 			if($this->Widget->validates())
 			{

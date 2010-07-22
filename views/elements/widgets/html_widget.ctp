@@ -14,8 +14,17 @@ if($template == 'admin')
 
 } else {
 
-	if(isset($data['content'])) echo $data['content'];
-	// echo String::insert($$template, Set::flatten($data));
+	$content = (isset($data['content']))
+		? $data['content']
+		: '';
+
+	//or whatever you want to merge...
+	$data = array(
+		'App' => Configure::read('App'),
+		'User' => Configure::read('User.User'),
+	);
+
+	echo String::insert($content, Set::flatten($data));
 }
 
 ?>
