@@ -166,8 +166,6 @@ class ThemeView extends View
 	{
 		if(Configure::read() && $this->viewPath == 'errors')
 		{
-			debug($layout);
-			debug($this->_controller);
 			$this->plugin = 'flour';
 			$this->layout = 'error';
 		}
