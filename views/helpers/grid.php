@@ -72,6 +72,7 @@ class GridHelper extends AppHelper
 		if(is_bool($content) || $this->last)
 		{
 			$class = "span-$span last";
+			$this->last = false;
 			$content = null;
 		} else {
 			$class = "span-$span";
