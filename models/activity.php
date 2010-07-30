@@ -45,8 +45,17 @@ class Activity extends FlourAppModel
 
 	function beforeSave($options = null)
 	{
-		$user_id = Authsome::get('User.id');
-		$this->data[$this->alias]['user_id'] = $user_id;
+		// if no user was written to config so far, we won't get the user here
+		// if you want the Activity log to contain the user_id, call
+		// Authsome::get() before writing to the activity log. Authsome then has the
+		// user context stored to config.
+		$config_user = Configure::read(Authsome::instance()->settings['configureKey']);
+		if(!empty($config_user))
+		{
+			$user_id = Authsome::get('User.id');
+			$this->data[$this->alias]['user_id'] = $user_id;
+		}
+		
 		$this->data[$this->alias]['message'] = $this->parse($this->data[$this->alias]['type'], $this->data[$this->alias]['data']);
 		$this->data[$this->alias]['data'] = json_encode($this->data[$this->alias]['data']);
 		return parent::beforeSave($options);
