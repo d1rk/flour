@@ -13,9 +13,9 @@ CakePHP up to the latest version 1.3 is supported.
 Design Goals
 ------------
  * CMSes suck.  We don't want our application to live inside a CMS.
- * Do one thing and do it well.  rit. schedules content.  That's pretty much it.
+ * Do one thing and do it well. flour schedules content.  That's pretty much it.
  * Don't be clever.  We're not clever so we probably can't make a computer clever.
- * Be fast.  Cache in rit. so that the consuming application doesn't have to.
+ * Be fast.  Cache in flour so that the consuming application doesn't have to.
 
 
 Getting Started
@@ -152,30 +152,6 @@ Usage Example
 
 <pre><code class="php">
 &lt;?php
-
-// register Pheanstalk class loader
-require_once('pheanstalk_init.php');
-
-$pheanstalk = new Pheanstalk('127.0.0.1');
-
-// ----------------------------------------
-// producer (queues jobs)
-
-$pheanstalk
-  ->useTube('testtube')
-  ->put("job payload goes here\n");
-
-// ----------------------------------------
-// worker (performs jobs)
-
-$job = $pheanstalk
-  ->watch('testtube')
-  ->ignore('default')
-  ->reserve();
-
-echo $job->getData();
-
-$pheanstalk->delete($job);
 
 ?&gt;
 </code></pre>
