@@ -105,7 +105,9 @@ if(!empty($search))
 		$btnbar_content[] = $this->Form->hidden('Model.name', array('value' => $search));
 		if($preserveNamedParams && isset($this->params['named']) && !empty($this->params['named']))
 		{
-			$btnbar_content[] = $this->Form->hidden('Model.params', array('value' => json_encode($this->params['named'])));
+			$searchParams = $this->params['named'];
+			unset($searchParams['page']);
+			$btnbar_content[] = $this->Form->hidden('Model.params', array('value' => json_encode($searchParams)));
 		}
 		$btnbar_content[] = $this->Form->input('search', array(
 			'label' => false,
