@@ -131,7 +131,7 @@ class Tagged extends FlourAppModel {
  * $this->Article->Tagged->find('tagged', array(
  *		'by' => 'cakephp',
  *		'model' => 'Article'));
- * </code
+ * </code>
  *
  * @TODO Find a way to populate the "magic" field Article.tags
  * @param string $state
