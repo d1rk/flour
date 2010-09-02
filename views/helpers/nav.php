@@ -29,6 +29,7 @@ class NavHelper extends AppHelper
 	var $pageId   = 'page_id';
 
 	var $allowedAttributes = array(
+		'type',
 		'id',
 		'class',
 		'rel',
@@ -295,6 +296,24 @@ class NavHelper extends AppHelper
 
 			switch($type)
 			{
+				case 'Save':
+					$attributes['type'] = 'submit';
+					$attributes['name'] = 'data[saveButton]';
+					$attributes['value'] = 'Save';
+					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
+					break;
+				case 'Saveback':
+					$attributes['type'] = 'submit';
+					$attributes['name'] = 'data[saveButton]';
+					$attributes['value'] = 'SaveBack';
+					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
+					break;
+				case 'Savenext':
+					$attributes['type'] = 'submit';
+					$attributes['name'] = 'data[saveButton]';
+					$attributes['value'] = 'SaveNext';
+					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
+					break;
 				case 'Button':
 					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
 					break;
