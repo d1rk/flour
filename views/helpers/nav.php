@@ -293,7 +293,7 @@ class NavHelper extends AppHelper
 			$url = (isset($url) && !empty($url))
 				? $url
 				: false;
-
+debug($attributes);
 			switch($type)
 			{
 				case 'Save':
@@ -315,6 +315,7 @@ class NavHelper extends AppHelper
 					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
 					break;
 				case 'Button':
+					unset($attributes['type']);
 					$output .= $this->Button->button('<span'.$_rel.'>'.$name.'</span>', $attributes);
 					break;
 				case 'Link':
