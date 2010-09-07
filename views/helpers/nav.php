@@ -293,7 +293,7 @@ class NavHelper extends AppHelper
 			$url = (isset($url) && !empty($url))
 				? $url
 				: false;
-debug($attributes);
+
 			switch($type)
 			{
 				case 'Save':
