@@ -71,10 +71,10 @@ class PostmarkComponent extends EmailComponent {
 	function initialize(&$controller, $settings = array()) {
 		parent::initialize($controller, $settings);
 		if (Configure::read('Service.Postmark.uri') !== null) {
-			$this->uri = Configure::read('Postmark.uri');
+			$this->uri = Configure::read('Service.Postmark.uri');
 		}
 		if (Configure::read('Service.Postmark.key') !== null) {
-			$this->key = Configure::read('Postmark.key');
+			$this->key = Configure::read('Service.Postmark.key');
 		}
 	}
 
