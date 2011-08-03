@@ -3,6 +3,9 @@ Configure::write('Env.hostname', str_replace('www.', '', env('HTTP_HOST')));
 
 $folder = (isset($_REQUEST['url'])) ? '/'.$_REQUEST['url'] : '';
 $folder = rtrim(str_replace($folder, '', env('REQUEST_URI')), '/'); //calculates the current sub-folder of installation
+$folder = (strpos($folder, '?') !== false)
+	? substr($folder, 0, strpos($folder, '?')) // remove request params
+	: $folder;
 
 Configure::write('Env.subfolder', $folder); //current subfolder where app resides
 
